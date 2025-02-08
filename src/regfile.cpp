@@ -13,7 +13,7 @@
  * Initializes the register array to 0 other than PC
  * and SP
  */
-RegFile::RegFile(int PCLoc, int SPLoc) {
+RegFile::RegFile(uint32_t PCLoc, uint32_t SPLoc) {
 	registers.fill(0);
 	registers[sp] = SPLoc;
 	registers[PC] = PCLoc;
@@ -77,6 +77,8 @@ uint32_t RegFile::readPC(void) {
 void RegFile::print(void) {
 	printf("+++++ REGISTER FILE +++++\n");
 	for (int i = 0; i < REGWIDTH; i++) {
-		printf("Register[%d]: %x\n", i, registers[i]);
+		printf("Register[%d]: 0x%x\n", i, registers[i]);
 	}
+
+	printf("PC is 0x%x \n", registers[PC]);
 }
