@@ -18,7 +18,7 @@ class RegFile
 		std::array<uint32_t, 33> registers;
 	
 	public:
-		RegFile(int PCLoc, int SPLoc);
+		RegFile(uint32_t PCLoc, uint32_t SPLoc);
 		uint32_t read(uint8_t val);
 		void write(uint8_t idx, uint32_t val);
 		void updatePC(uint32_t val);
