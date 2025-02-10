@@ -1,12 +1,17 @@
 #include "regfile.hpp"
+#include "memory.hpp"
 #include <cstdio>
 #include <getopt.h>
 #include <string>
+#include <memory>
 
 bool verboseMode = false;
 uint32_t PROGRAMSTART = 0;
 uint32_t STACKADDRESS = 65536;
-std::string fileName = "..//images//program.mem";
+std::string fileName = ".//images//program.mem";
+
+std::shared_ptr<RegFile> regs;
+std::shared_ptr<Memory> mem;
 
 int main(int argc, char *argv[]) {
     // read and interprete CLI
@@ -21,10 +26,10 @@ int main(int argc, char *argv[]) {
                 fileName = optarg;
                 break;
             case 'p':
-                PROGRAMSTART = std::stoul(optarg);
+                PROGRAMSTART = std::stoul(optarg, 0, 16);
                 break;
             case 's': 
-                STACKADDRESS = std::stoul(optarg);
+                STACKADDRESS = std::stoul(optarg, 0, 16);
                 break;
             case 'h':
                 printf("Options for the program are:\n");
@@ -43,9 +48,16 @@ int main(int argc, char *argv[]) {
             default:
                 abort();
         }
-    }   
+    }
+
+    // initialize register singleton
+    regs = std::make_shared<RegFile>(PROGRAMSTART, STACKADDRESS);
+    
+    // initialize memory singleton
+    mem = std::make_shared<Memory>(fileName);
+
 #ifdef DEBUG    
-    printf("Verbose mode = %b\tFileName = %s\tProg = %u\tStack = %u\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
+    printf("Verbose mode = %b\tFileName = %s\tProg = 0x%x\tStack = 0x%x\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
 #endif
 
     // program exit point
