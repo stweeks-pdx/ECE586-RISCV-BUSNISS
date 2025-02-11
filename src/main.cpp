@@ -1,5 +1,6 @@
 #include "regfile.hpp"
 #include "memory.hpp"
+#include "processor.hpp"
 #include <cstdio>
 #include <getopt.h>
 #include <string>
@@ -59,6 +60,11 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG    
     printf("Verbose mode = %b\tFileName = %s\tProg = 0x%x\tStack = 0x%x\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
 #endif
+
+    while(1){
+    fetch();
+    }
+
 
     // program exit point
     return 0;
