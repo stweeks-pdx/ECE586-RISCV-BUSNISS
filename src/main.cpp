@@ -10,8 +10,8 @@ uint32_t PROGRAMSTART = 0;
 uint32_t STACKADDRESS = 65536;
 std::string fileName = ".//images//program.mem";
 
-std::shared_ptr<RegFile> regs;
-std::shared_ptr<Memory> mem;
+std::unique_ptr<RegFile> regs;
+std::unique_ptr<Memory> mem;
 
 int main(int argc, char *argv[]) {
     // read and interprete CLI
@@ -51,10 +51,10 @@ int main(int argc, char *argv[]) {
     }
 
     // initialize register singleton
-    regs = std::make_shared<RegFile>(PROGRAMSTART, STACKADDRESS);
+    regs = std::make_unique<RegFile>(PROGRAMSTART, STACKADDRESS);
     
     // initialize memory singleton
-    mem = std::make_shared<Memory>(fileName);
+    mem = std::make_unique<Memory>(fileName);
 
 #ifdef DEBUG    
     printf("Verbose mode = %b\tFileName = %s\tProg = 0x%x\tStack = 0x%x\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
