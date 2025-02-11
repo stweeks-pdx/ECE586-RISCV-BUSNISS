@@ -1,8 +1,11 @@
 #include <cstdio>
 #include <iostream>
 #include "regfile.hpp"
+#include "memory.hpp"
 
 int registers_t(void);
+
+uint32_t STACKADDRESS = 0x10080;
 
 int main() {
 	int test_passed = 0;
