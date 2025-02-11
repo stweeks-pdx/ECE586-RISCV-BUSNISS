@@ -1,5 +1,6 @@
 #include "regfile.hpp"
 #include "memory.hpp"
+#include "processor.hpp"
 #include <cstdio>
 #include <getopt.h>
 #include <string>
