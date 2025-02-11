@@ -61,6 +61,10 @@ int main(int argc, char *argv[]) {
     printf("Verbose mode = %b\tFileName = %s\tProg = 0x%x\tStack = 0x%x\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
 #endif
 
+    while(1){
+    fetch();
+    }
+
     // program exit point
     return 0;
 }
