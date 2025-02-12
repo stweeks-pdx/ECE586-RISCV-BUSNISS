@@ -23,6 +23,7 @@ class Memory
         void writeHWord(uint32_t address, uint16_t val);
         void writeWord(uint32_t address, uint32_t val);
         void print(void);
+	void print(char filler);
         void print(uint32_t start, uint32_t stop);
 };
 

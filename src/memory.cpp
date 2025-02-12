@@ -6,11 +6,10 @@
 /* Memory Constructor
  *
  * Constructor for Memory 
+ * Opens fileName and iterates through lines to populate memory
  *
  * Inputs:
  * string fileName - Name of the fileName to be loaded into memory
- *
- * Opens fileName and iterates through lines to populate memory
  */
 Memory::Memory(std::string fileName) {
     std::ifstream f;
@@ -89,7 +88,6 @@ uint16_t Memory::readHWord(uint32_t address) {
  * Outputs:
  * uint32_t of the value present at that address
  */
-//TODO: Pretty sure this will flip the byte order REWRITE
 uint32_t Memory::readWord(uint32_t address) {
     uint32_t word = 0;
 
@@ -139,10 +137,9 @@ void Memory::writeWord(uint32_t address, uint32_t val) {
     }
 }
 
-//TODO: Make it so these print based on word addresses and not bytes?
-/* print
+/* print(void)
  *
- * Prints the contents of all valid Memory addresses
+ * Prints the contents of all valid Memory addresses in bytes
  *
  */
 void Memory::print(void) {
@@ -151,7 +148,36 @@ void Memory::print(void) {
     }
 }
 
-/* print
+/* print(char filler)
+ *
+ * Prints the contents of all word aligned memory addresses
+ * Invalid locations are replaced with copies of filler char
+ *
+ * Inputs:
+ * char filler - Character to use in place of invalid bytes 
+ */
+void Memory::print(char filler) {
+    std::string output;
+    bool partValid;
+    std::string hex = "0123456789ABCDEF";
+    uint8_t byte;
+    for (uint32_t i = 0; i < STACKADDRESS; i+=4) {
+	partValid = false;
+	output.clear();
+        for (int j = NUMBYTESWORD-1; j >= 0; j--){ 
+            if (byteAtMemLoc.count(i+j)){
+                byte = byteAtMemLoc[i+j];            
+                output.append(1,hex[byte/0x10]);
+                output.append(1,hex[byte%0x10]);
+                partValid = true;
+            } else {
+                output.append(2,filler);
+            }
+	}
+        if (partValid) printf("%08X: %s\n", i, output.c_str()); 
+    }
+}    
+/* print(uint32_t start, uint32_t stop)
  *
  * Prints the contents of valid Memory addresses
  * between specified bounds from start to end-1
