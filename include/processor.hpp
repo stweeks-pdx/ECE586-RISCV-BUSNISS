@@ -3,14 +3,14 @@
 #include <cstdio>
 #include <cstdint>
 //Masks for bit field
-constexpr uint32_t OPCODEMASK 0x0000007F
+constexpr uint32_t OPCODEMASK = 0x0000007F;
 //Instruction types
-constexpr uint8_t RTYPE 0x33
-constexpr uint8_t ITYPE 0x13
-constexpr uint8_t STYPE 0x23
-constexpr uint8_t BTYPE 0x63
-constexpr uint8_t UTYPE 0x6F
-constexpr uint8_t JTYPE 0x67
+constexpr uint8_t RTYPE = 0x33;
+constexpr uint8_t ITYPE = 0x13;
+constexpr uint8_t STYPE = 0x23;
+constexpr uint8_t BTYPE = 0x63;
+constexpr uint8_t UTYPE = 0x6F;
+constexpr uint8_t JTYPE = 0x67;
 //Funct3 codes
 //Funct7 codes
 
