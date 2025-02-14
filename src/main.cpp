@@ -61,6 +61,9 @@ int main(int argc, char *argv[]) {
     printf("Verbose mode = %b\tFileName = %s\tProg = 0x%x\tStack = 0x%x\n", verboseMode, fileName.c_str(), PROGRAMSTART, STACKADDRESS);
 #endif
 
+    // Construct our encoding map
+    constructMap();
+
     while(1){
     fetch();
     }
