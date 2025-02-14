@@ -7,13 +7,16 @@
 constexpr uint8_t NUMBYTESWORD = 4; 
 constexpr uint8_t NUMBYTESHWORD = 2;
 constexpr uint8_t BYTEMASK = 0xFF;
+constexpr uint16_t HWORDMASK = 0xFFFF;
 extern uint32_t STACKADDRESS;
 
 class Memory
 {
     private:
         std::unordered_map<uint32_t, uint8_t> byteAtMemLoc;
-    
+    	uint32_t readMem(uint32_t address, uint8_t n);
+	void writeMem(uint32_t address, uint32_t val, uint8_t n);
+
     public:
         Memory(std::string fileName);
         uint8_t readByte(uint32_t address);

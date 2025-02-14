@@ -20,7 +20,7 @@ void fetch(void){
 void decode(uint32_t instr){
 	if (instr == 0){
 		regs->print();
-		mem->print();
+		mem->print('-');
 		exit(1);
 	}
 	uint8_t opcode = instr & OPCODEMASK;
