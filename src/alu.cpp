@@ -2,7 +2,7 @@
 #include <iostream>
 
 constexpr uint32_t REGMASK = 0x1F;
-constexpr uint32_t F3MASK  = 0x3;
+constexpr uint32_t F3MASK  = 0x07;
 
 void ALU::decode(uint32_t instr) {
 	funct7  = (instr >> 25);
