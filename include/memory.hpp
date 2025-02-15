@@ -6,8 +6,8 @@
 
 constexpr uint8_t NUMBYTESWORD = 4; 
 constexpr uint8_t NUMBYTESHWORD = 2;
-constexpr uint8_t BYTEMASK = 0xFF;
-constexpr uint16_t HWORDMASK = 0xFFFF;
+constexpr uint32_t BYTEMASK  = 0x000000FF;
+constexpr uint32_t HWORDMASK = 0x0000FFFF;
 extern uint32_t STACKADDRESS;
 
 class Memory

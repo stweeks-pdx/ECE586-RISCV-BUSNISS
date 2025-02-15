@@ -43,7 +43,7 @@ uint32_t RegFile::read(uint8_t val) {
  * uint32_t val - value to write in the register
  */
 void RegFile::write(uint8_t idx, uint32_t val) {
-	if ((val == zero) || (val > (REGWIDTH - 1))) return;
+	if ((idx == zero) || (idx > (REGWIDTH - 1))) return;
 	registers[idx] = val;
 }
 
