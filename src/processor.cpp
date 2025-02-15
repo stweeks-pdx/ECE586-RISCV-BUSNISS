@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include "instr.hpp"
 #include "alu.hpp"
+#include "load.hpp"
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
@@ -15,13 +16,17 @@ extern std::unique_ptr<Memory> mem;
 static std::unordered_map<uint8_t, std::unique_ptr<InstrBase>> instrMap;
 
 static std::unique_ptr<ALU> aluOp;
-
+static std::unique_ptr<LOAD> loadOp;
 constexpr uint32_t opMask = 0x7F;
 
 void constructMap(void) {
 	// create ALU operation
 	aluOp = std::make_unique<ALU>();
 	instrMap[ALUOP] = std::move(aluOp);
+
+	// create LOAD operation
+	loadOp = std::make_unique<LOAD>();
+	instrMap[LOADOP] = std::move(loadOp);
 }
 
 void fetch(void) {
