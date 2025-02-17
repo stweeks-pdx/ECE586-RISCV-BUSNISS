@@ -16,8 +16,6 @@ static std::unordered_map<uint8_t, std::unique_ptr<InstrBase>> instrMap;
 
 static std::unique_ptr<ALU> aluOp;
 
-constexpr uint32_t opMask = 0x7F;
-
 void constructMap(void) {
 	// create ALU operation
 	aluOp = std::make_unique<ALU>();
@@ -36,7 +34,7 @@ void fetch(void) {
 		exit(0);
 	}
 
-	uint8_t opcode = instr & opMask;
+	uint8_t opcode = instr & OPCODEMASK;
 	std::unique_ptr<InstrBase>& opRef = instrMap.at(opcode);
 
 	opRef->decode(instr);
