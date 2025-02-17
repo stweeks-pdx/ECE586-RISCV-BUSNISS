@@ -38,12 +38,12 @@ void LOAD::execute() {
 
     switch (funct3) {
         case LB:
-            val = mem->readByte(address) & BYTEMASK;
+            val = mem->readByte(address);
             val = ((val >> BMSB) & MSBMASK) ? (val | BEXTMASK) : (val);
             regs->write(rd, val);
             break;
         case LH:
-            val = mem->readHWord(address) & HWORDMASK;
+            val = mem->readHWord(address);
             val = ((val >> HWMSB) & MSBMASK) ? (val | HWEXTMASK) : (val);       
             regs->write(rd, val);
             break;
@@ -52,11 +52,11 @@ void LOAD::execute() {
             regs->write(rd, val);
             break;
         case LBU:
-            val = mem->readByte(address) & BYTEMASK;
+            val = mem->readByte(address);
             regs->write(rd, val);            
             break;
         case LHU:
-            val = mem->readHWord(address) & HWORDMASK;
+            val = mem->readHWord(address);
             regs->write(rd, val);
             break;
         default:
