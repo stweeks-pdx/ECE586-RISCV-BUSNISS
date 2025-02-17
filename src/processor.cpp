@@ -5,60 +5,40 @@
 #include <memory>
 #include <cstdlib>
 #include <cstdint>
+#include <unordered_map>
+#include "instr.hpp"
+#include "alu.hpp"
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
 
-void fetch(void){
+static std::unordered_map<uint8_t, std::unique_ptr<InstrBase>> instrMap;
+
+static std::unique_ptr<ALU> aluOp;
+
+void constructMap(void) {
+	// create ALU operation
+	aluOp = std::make_unique<ALU>();
+	instrMap[ALUOP] = std::move(aluOp);
+}
+
+void fetch(void) {
 	uint32_t pc = regs->readPC();
 	uint32_t instr = mem->readWord(pc);
 	regs->updatePC((regs->readPC() + 4));
-	decode(instr);
-	return;
-};
-
-void decode(uint32_t instr){
-	if (instr == 0){
+	
+	// TODO: REMOVE WITH JUMP CLASS DOING THIS
+	if (instr == 0) {
 		regs->print();
-		mem->print();
-		exit(1);
+		mem->print('z');
+		exit(0);
 	}
+
 	uint8_t opcode = instr & OPCODEMASK;
-	switch (opcode){
-	case (RTYPE):
-		break;
-	case (ITYPE):
-		break;
-	case (STYPE):
-		break;
-	case (BTYPE):
-		break;
-	case (UTYPE):
-		break;
-	case (JTYPE):
-		break;
-	default:
-		break;
-	}
-};
+	std::unique_ptr<InstrBase>& opRef = instrMap.at(opcode);
 
-void execute(void){
-	/*	
-		switch (funct3){
-			case(LB):
-				break;
-			case(LH):
-				break;
-			case(LW):
-				break;
-			case(LBU):
-				break;
-			case(LHU):
-				break;
-			default:
-				break;
-		}
-		*/
-};
+	opRef->decode(instr);
 
-
+	opRef->execute();
+	return;
+}
