@@ -1,12 +1,15 @@
 #include "regfile.hpp"
 #include "memory.hpp"
 #include "processor.hpp"
+#include "debug.hpp"
 #include <cstdio>
 #include <getopt.h>
 #include <string>
 #include <memory>
+#include <iostream>
 
 bool verboseMode = false;
+bool debugger = false;
 uint32_t PROGRAMSTART = 0;
 uint32_t STACKADDRESS = 65536;
 std::string fileName = ".//images//program.mem";
@@ -18,7 +21,7 @@ int main(int argc, char *argv[]) {
     // read and interprete CLI
     int c;
     // Parse arguments
-    while((c = getopt(argc, argv, "vf:p:s:h")) != -1){
+    while((c = getopt(argc, argv, "vf:p:s:dh")) != -1){
         switch(c){
             case 'v':
                 verboseMode = true;
@@ -32,12 +35,16 @@ int main(int argc, char *argv[]) {
             case 's': 
                 STACKADDRESS = std::stoul(optarg, 0, 16);
                 break;
+	    case 'd':
+		debugger = true;
+		break;
             case 'h':
                 printf("Options for the program are:\n");
                 printf("v -- Verbose mode\n");
                 printf("p -- Program starting address\n");
                 printf("s -- Starting stack address\n");
                 printf("f -- program.mem to be run by the simulator\n");
+		printf("d -- debugging mode that allows step through, print register, print memory, and print instruction\n");
                 printf("Example: ./bin/rvsim -f <filename> -s 2048 -p 1024\n");
                 return 0;
             case '?':
@@ -64,8 +71,14 @@ int main(int argc, char *argv[]) {
     // Construct our encoding map
     constructMap();
 
-    while(1){
-    fetch();
+    while(true) {
+        fetch(verboseMode);
+	if (debugger) debugMode();
+    }
+
+    if (!verboseMode) {
+	    std::cout << "Final PC is: " << std::hex << (regs->readPC() - NUMBYTESWORD) << std::endl;
+	    regs->print();
     }
 
 

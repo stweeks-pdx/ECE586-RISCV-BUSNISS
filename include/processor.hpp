@@ -17,7 +17,7 @@ constexpr uint8_t JALROP   = 0x67;
 //Funct3 codes
 //Funct7 codes
 
-void fetch(void);
+void fetch(bool verboseMode);
 void constructMap(void);
 
 #endif //_PROCESSOR_HPP_
