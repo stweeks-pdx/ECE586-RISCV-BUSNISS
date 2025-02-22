@@ -688,7 +688,7 @@ int aluSra_t(void) {
 	// -16 >> 34 (which is shift by 2 with the lower five registers)
 	regs->write(rs1, -16);
 	regs->write(rs2, 34);
-	eRes = ~(16 >> 2) + 1;
+	eRes = static_cast<int32_t>(-16) >> 2;
 
 	alu.decode(instr);
 	alu.execute();
