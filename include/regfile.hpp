@@ -15,7 +15,7 @@ constexpr uint8_t REGWIDTH = 32;
 class RegFile
 {
 	private:
-		std::array<uint32_t, 33> registers;
+		std::array<uint32_t, (REGWIDTH + 1)> registers;
 	
 	public:
 		RegFile(uint32_t PCLoc, uint32_t SPLoc);
