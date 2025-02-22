@@ -658,7 +658,7 @@ int aluSra_t(void) {
 	// -8 >> 2
 	regs->write(rs1, -8);
 	regs->write(rs2, 2);
-	eRes = ~(8 >> 2) + 1;
+	eRes = static_cast<int32_t>(-8) >> 2;
 
 	alu.decode(instr);
 	alu.execute();
