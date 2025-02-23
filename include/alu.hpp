@@ -24,4 +24,4 @@ class ALU : public InstrBase {
 		void execute() override;
 };
 
-#endif // _ALU_HAPP_
+#endif // _ALU_HPP_
