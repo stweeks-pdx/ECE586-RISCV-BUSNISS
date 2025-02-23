@@ -70,7 +70,6 @@ void constructMap(void) {
 	// create JAL operation
 	jalOp = std::make_unique<JAL>();
 	instrMap[JALOP] = std::move(jalOp);
-
 }
 
 void fetch(bool verboseMode) {
