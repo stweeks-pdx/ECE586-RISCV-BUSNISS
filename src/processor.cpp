@@ -12,6 +12,14 @@
 #include "alui.hpp"
 #include "jal.hpp"
 #include "jalr.hpp"
+#include "alui.hpp"
+
+
+#include <cstdio>
+#include <memory>
+#include <cstdlib>
+#include <cstdint>
+#include <unordered_map>
 
 #include <iostream>
 #include <cstdio>
