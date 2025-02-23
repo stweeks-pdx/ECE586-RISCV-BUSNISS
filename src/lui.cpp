@@ -22,9 +22,5 @@ void LUI::execute() {
 
     if (regs->read(rd) != imm)
         std::cout << "Error in LUI operation" << std::endl;
-
-#ifdef DEBUG
-    std::cout << "\tVal: " << std::hex << val << std::endl;
-#endif
 }
 
