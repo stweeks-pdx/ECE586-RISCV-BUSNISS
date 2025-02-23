@@ -1,11 +1,6 @@
 #include "processor.hpp"
 #include "memory.hpp"
 #include "regfile.hpp"
-#include <cstdio>
-#include <memory>
-#include <cstdlib>
-#include <cstdint>
-#include <unordered_map>
 #include "instr.hpp"
 #include "alu.hpp"
 #include "load.hpp"
@@ -15,6 +10,14 @@
 #include "branch.hpp"
 #include "jal.hpp"
 #include "jalr.hpp"
+#include "alui.hpp"
+
+
+#include <cstdio>
+#include <memory>
+#include <cstdlib>
+#include <cstdint>
+#include <unordered_map>
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
@@ -29,6 +32,7 @@ static std::unique_ptr<AUIPC> auipcOp;
 static std::unique_ptr<BRANCH> branchOp;
 static std::unique_ptr<JAL> jalOp;
 static std::unique_ptr<JALR> jalrOp;
+static std::unique_ptr<ALUI> aluiOp; 
 
 void constructMap(void) {
 	// create ALU operation
@@ -62,6 +66,10 @@ void constructMap(void) {
 	//create JALR operation
 	jalrOp = std::make_unique<JALR>();
 	instrMap[JALROP] = std::move(jalrOp);
+
+	// create ALU Immediate operation
+	aluiOp = std::make_unique<ALUI>();
+	instrMap[ALUIOP] = std::move(aluiOp);
 }
 
 void fetch(void) {
