@@ -11,6 +11,7 @@
 #include "load.hpp"
 #include "store.hpp"
 #include "lui.hpp"
+#include "auipc.hpp"
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
@@ -21,6 +22,7 @@ static std::unique_ptr<ALU> aluOp;
 static std::unique_ptr<LOAD> loadOp;
 static std::unique_ptr<STORE> storeOp;
 static std::unique_ptr<LUI> luiOp;
+static std::unique_ptr<AUIPC> auipcOp;
 
 void constructMap(void) {
 	// create ALU operation
@@ -38,6 +40,10 @@ void constructMap(void) {
 	// create LUI operation
 	luiOp = std::make_unique<LUI>();
 	instrMap[LUIOP] = std::move(luiOp);
+
+	// create AUIPC operation
+	auipcOp = std::make_unique<AUIPC>();
+	instrMap[AUIPCOP] = std::move(auipcOp);
 }
 
 void fetch(void) {
