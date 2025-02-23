@@ -9,6 +9,7 @@
 #include "instr.hpp"
 #include "alu.hpp"
 #include "load.hpp"
+#include "store.hpp"
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
@@ -17,6 +18,7 @@ static std::unordered_map<uint8_t, std::unique_ptr<InstrBase>> instrMap;
 
 static std::unique_ptr<ALU> aluOp;
 static std::unique_ptr<LOAD> loadOp;
+static std::unique_ptr<STORE> storeOp;
 
 void constructMap(void) {
 	// create ALU operation
@@ -26,6 +28,10 @@ void constructMap(void) {
 	// create LOAD operation
 	loadOp = std::make_unique<LOAD>();
 	instrMap[LOADOP] = std::move(loadOp);
+
+	// create STORE operation
+	storeOp = std::make_unique<STORE>();
+	instrMap[STOREOP] = std::move(storeOp);
 }
 
 void fetch(void) {
