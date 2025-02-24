@@ -6,6 +6,7 @@
 
 int registers_t(void);
 int alu_t(void);
+int alui_t(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
@@ -24,6 +25,13 @@ int main() {
 	std::cout << "Running ALU test" << std::endl;
 	regs = std::make_unique<RegFile>(PROGRAMSTART, STACKADDRESS);
 	test_passed |= alu_t();
+
+	// ALUI Test
+	// reset regs file
+	regs->write(0x06, 0);
+	regs->write(0x0B, 0);
+	std::cout << "Running ALUI test" << std::endl;
+	test_passed |= alui_t();
 
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
 
