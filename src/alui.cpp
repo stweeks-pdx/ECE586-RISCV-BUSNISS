@@ -42,7 +42,7 @@ void ALUI::execute() {
 			Ushiftee = regs->read(rs1);
 			shamt = imm & SHIFTMASK;
 			result = Ushiftee << shamt;
-			regs->write(rd, shamt);
+			regs->write(rd, result);
 			break;
 		case SLTI:
 			comp = static_cast<int32_t>(regs->read(rs1));
@@ -65,7 +65,7 @@ void ALUI::execute() {
 				Ushiftee = regs->read(rs1);
 				shamt = imm & SHIFTMASK;
 				result = Ushiftee >> shamt;
-				regs->write(rd, shamt);
+				regs->write(rd, result);
 			} else {
 				// SRAI
 				shiftee = static_cast<int32_t>(regs->read(rs1));
