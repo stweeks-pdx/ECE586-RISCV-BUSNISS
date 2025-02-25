@@ -17,6 +17,7 @@ class BRANCH : public InstrBase {
 		uint8_t  rs1;
 		uint8_t  funct3;
 		void check(bool taken, uint32_t target);
+		void throwException(uint32_t* target);
 	public:
 		void decode(uint32_t instr) override;
 		void execute() override;

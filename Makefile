@@ -1,6 +1,9 @@
 # Compiler and flags
 CXX := g++
 CXXFLAGS := -Wall -std=c++20 -Iinclude
+ifdef TEST
+	CXXFLAGS += -DTEST
+endif
 LDFLAGS := 
 
 # Directories
@@ -41,7 +44,7 @@ test: $(TEST_TARGET)
 	@$(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o, $(OBJECTS)) | $(BIN_DIR)
-	$(CXX) $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o, $(OBJECTS)) -o $(TEST_TARGET) $(LDFLAGS)
+	$(CXX) $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o, $(OBJECTS)) -o $(TEST_TARGET) $(TESTFLAGS) $(LDFLAGS)
 
 $(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp $(HEADERS) | $(TEST_OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -56,4 +59,3 @@ clean:
 
 # Phony targets
 .PHONY: build clean test
-
