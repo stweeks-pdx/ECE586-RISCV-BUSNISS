@@ -15,7 +15,7 @@ constexpr uint32_t TARMASK = 0xFFFFFFFE;
 constexpr uint32_t ALIGNMASK = 0x3;
 
 void JALR::decode(uint32_t instr) {
-	imm = (instr >> 31) ? ((imm >> 20) | SIGNMASK) : imm >> 20;
+	imm = (instr >> 31) ? ((instr >> 20) | SIGNMASK) : (instr >> 20);
 	rs1 = (instr >> 15) & REGMASK;
 	func3 = (instr >> 12) & FUNCMASK;
 	rd = (instr >> 7) & REGMASK;
@@ -37,9 +37,9 @@ void JALR::execute() {
 	printf("Writing 0x%8X to register %d, new PC address is 0x%8X. RS1(%d) value was 0x%8X\n", regs->readPC(), rd, target, rs1, regs->read(rs1));
 	#endif
 		if(rd == ra && target == 0){
-			#ifdef DEBUG
-			printf("Goodbye!");
-			#endif
+			//#ifdef DEBUG
+			printf("Goodbye! Target is 0x%x", target);
+			//#endif
 			exit(0);
 			//continueSim = false;	
 		}
