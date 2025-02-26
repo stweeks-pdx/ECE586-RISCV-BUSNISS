@@ -6,6 +6,7 @@
 
 int registers_t(void);
 int alu_t(void);
+int jalrTest(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
@@ -24,6 +25,10 @@ int main() {
 	std::cout << "Running ALU test" << std::endl;
 	regs = std::make_unique<RegFile>(PROGRAMSTART, STACKADDRESS);
 	test_passed |= alu_t();
+
+	//JALR Test
+	std::cout << "Running JALR op test" << std::endl;
+	test_passed |= jalrTest();
 
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
 
