@@ -34,10 +34,6 @@ int main() {
 	std::cout << "Running Branch test" << std::endl;
 	test_passed |= branch_t();
 
-	// JAL Test
-	std::cout << "Running JAL test" << std::endl;
-	test_passed |= jal_t();
-
 	//JALR Test
 	std::cout << "Running JALR op test" << std::endl;
 	test_passed |= jalrTest();

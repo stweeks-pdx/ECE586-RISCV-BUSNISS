@@ -8,9 +8,10 @@
 #include "lui.hpp"
 #include "auipc.hpp"
 #include "branch.hpp"
-#include "jal.hpp"
 #include "jalr.hpp"
 #include "alui.hpp"
+#include "jal.hpp"
+
 #include <iostream>
 #include <cstdio>
 #include <memory>
@@ -58,10 +59,6 @@ void constructMap(void) {
 	branchOp = std::make_unique<BRANCH>();
 	instrMap[BRANCHOP] = std::move(branchOp);
 
-	// create JAL operation
-	jalOp = std::make_unique<JAL>();
-	instrMap[JALOP] = std::move(jalOp);
-
 	//create JALR operation
 	jalrOp = std::make_unique<JALR>();
 	instrMap[JALROP] = std::move(jalrOp);
@@ -69,6 +66,10 @@ void constructMap(void) {
 	// create ALU Immediate operation
 	aluiOp = std::make_unique<ALUI>();
 	instrMap[ALUIOP] = std::move(aluiOp);
+
+	// create JAL operation
+	jalOp = std::make_unique<JAL>();
+	instrMap[JALOP] = std::move(jalOp);
 
 }
 
