@@ -51,6 +51,10 @@ int main() {
 	std::cout << "Running JAL test" << std::endl;
 	test_passed |= jal_t();
 
+	//JALR Test
+	std::cout << "Running JALR op test" << std::endl;
+	test_passed |= jalrTest();
+
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
 
 	return test_passed;
