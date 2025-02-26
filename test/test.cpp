@@ -11,6 +11,7 @@ int jal_t(void);
 int jalrTest(void);
 int alui_t(void);
 int jal_t(void);
+int jalrTest(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
@@ -49,6 +50,9 @@ int main() {
 	std::cout << "Running JAL test" << std::endl;
 	test_passed |= jal_t();
 
+	//JALR Test
+	std::cout << "Running JALR op test" << std::endl;
+	test_passed |= jalrTest();
 
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
 

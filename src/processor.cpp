@@ -11,6 +11,7 @@
 #include "jalr.hpp"
 #include "alui.hpp"
 #include "jal.hpp"
+#include "jalr.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -33,6 +34,7 @@ static std::unique_ptr<BRANCH> branchOp;
 static std::unique_ptr<JAL> jalOp;
 static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<ALUI> aluiOp; 
+static std::unique_ptr<JAL> jalOp;
 
 void constructMap(void) {
 	// create ALU operation
@@ -70,6 +72,7 @@ void constructMap(void) {
 	// create JAL operation
 	jalOp = std::make_unique<JAL>();
 	instrMap[JALOP] = std::move(jalOp);
+
 }
 
 void fetch(bool verboseMode) {
