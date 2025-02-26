@@ -14,15 +14,16 @@ int posJump(){
 	uint8_t func3 = 0;
 	uint8_t rs1 = 0x14;
 	uint8_t rd = ra;
-	uint16_t imm = 0x0EB1;
+	uint16_t imm = 0x07B1;
 	JALR jalr;
 
 	testJump = (imm << 20) | (rs1 << 15) | (func3 << 12) | (rd << 7) | op;
-
+	
+	regs->updatePC(0x0);
 	regs->write(rs1, 0x50);
 
 	uint32_t ePC = ((regs->read(rs1) + imm) >> 1) << 1;
-	uint32_t eRA = regs->readPC()+4;
+	uint32_t eRA = regs->readPC();
 
 	jalr.decode(testJump);
 	jalr.execute();
@@ -45,15 +46,16 @@ int negJump(){
 	uint8_t func3 = 0;
 	uint8_t rs1 = 0x14;
 	uint8_t rd = ra;
-	uint16_t imm = 0xFB1;
+	uint16_t imm = 0x40;
 	JALR jalr;
 
 	testJump = (imm << 20) | (rs1 << 15) | (func3 << 12) | (rd << 7) | op;
 
+	regs->updatePC(0x0);
 	regs->write(rs1, 0x50);
 
-	uint32_t ePC = ((regs->read(rs1) + imm) >> 1) << 1;
-	uint32_t eRA = regs->readPC()+4;
+	uint32_t ePC = ((static_cast<int32_t>(regs->read(rs1)) + static_cast<int32_t>(imm)) >> 1) << 1;
+	uint32_t eRA = regs->readPC();
 
 	jalr.decode(testJump);
 	jalr.execute();
@@ -83,7 +85,7 @@ int badJump(){
 
 	regs->write(rs1, 0x50);
 
-	uint32_t ePC = regs->readPC()+4;
+	uint32_t ePC = regs->readPC();
 	uint32_t eRA = regs->read(rd);
 
 	jalr.decode(testJump);
@@ -113,9 +115,6 @@ int exitJump(){
 	testJump = (imm << 20) | (rs1 << 15) | (func3 << 12) | (rd << 7) | op;
 
 	regs->write(rs1, 0x50);
-
-	uint32_t ePC = ((regs->read(rs1) + imm) >> 1) << 1;
-	uint32_t eRA = regs->readPC()+4;
 
 	jalr.decode(testJump);
 	jalr.execute();
