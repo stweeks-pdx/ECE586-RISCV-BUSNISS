@@ -11,6 +11,7 @@ int jal_t(void);
 int jalrTest(void);
 int alui_t(void);
 int jal_t(void);
+int jalrTest(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
