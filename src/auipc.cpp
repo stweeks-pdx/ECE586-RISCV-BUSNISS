@@ -23,7 +23,7 @@ void AUIPC::execute() {
     val += imm;
 
 #ifdef DEBUG
-    std::cout << "\tLoading to " << unsigned(rd) << "\tVal: 0x" std::hex << val << std::endl;
+    std::cout << "\tLoading to " << unsigned(rd) << "\tVal: 0x" << std::hex << val << std::endl;
 #endif
 
     regs->write(rd, val);

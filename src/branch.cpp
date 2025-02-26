@@ -84,7 +84,7 @@ void BRANCH::throwException(uint32_t* target) {
 	std::cout << "ERROR: Misaligned target" << std::endl;
 #endif
 
-#ifdef TESTING
+#ifdef CONTINUE 
 	*target = *target - (*target%4);
 #elif  ISR
 	// TODO: Connect to ISR
