@@ -46,7 +46,7 @@ int negJump(){
 	uint8_t func3 = 0;
 	uint8_t rs1 = 0x14;
 	uint8_t rd = ra;
-	uint16_t imm = 0xFEB1;
+	uint32_t imm = 0xFFFFFEB1;
 	uint32_t ePC;
 	JALR jalr;
 
@@ -55,8 +55,7 @@ int negJump(){
 	regs->updatePC(0x0);
 	regs->write(rs1, 0x50);
 
-	ePC = (static_cast<int32_t>(regs->read(rs1)) + static_cast<int32_t>(imm));
-	ePC &= 0xFFFFFFFE;
+	ePC = (regs->read(rs1) + imm) >> 1 << 1;
 	uint32_t eRA = regs->readPC();
 
 	jalr.decode(testJump);
