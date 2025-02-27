@@ -33,7 +33,7 @@ void LOAD::execute() {
     address = regs->read(rs1) + offset;
 
 #ifdef DEBUG
-    std::cout << "Loading to " << unsigned(rd) << " from " std::hex << address << std::endl;
+    std::cout << "Loading to " << unsigned(rd) << " from " << std::hex << address << std::endl;
 #endif
 
     switch (funct3) {

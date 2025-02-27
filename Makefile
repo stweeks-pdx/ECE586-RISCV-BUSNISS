@@ -1,6 +1,12 @@
 # Compiler and flags
 CXX := g++
 CXXFLAGS := -Wall -std=c++20 -Iinclude
+ifeq ($(DEBUG), true)
+	CXXFLAGS += -DDEBUG
+endif
+ifeq ($(ISR), true)
+	CXXFLAGS += -DISR
+endif
 LDFLAGS := 
 
 # Directories
@@ -56,4 +62,3 @@ clean:
 
 # Phony targets
 .PHONY: build clean test
-

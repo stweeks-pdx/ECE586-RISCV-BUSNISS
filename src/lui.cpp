@@ -15,7 +15,7 @@ void LUI::decode(uint32_t instr) {
 
 void LUI::execute() {
 #ifdef DEBUG
-    std::cout << "Loading to " << unsigned(rd) << "\tVal: 0x" std::hex << imm << std::endl;
+    std::cout << "Loading to " << unsigned(rd) << "\tVal: 0x" << std::hex << imm << std::endl;
 #endif
 
     regs->write(rd, imm);
