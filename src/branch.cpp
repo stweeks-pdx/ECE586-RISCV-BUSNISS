@@ -35,7 +35,7 @@ void BRANCH::execute() {
     int32_t  val1  = static_cast<int32_t>(uval1);
     int32_t  val2  = static_cast<int32_t>(uval2);
 
-    if ((target % 4) != 0) throwException(&target); 
+    if ((target % 4) != 0) throwException(); 
 
 #ifdef DEBUG
     std::cout << "Branch target: " << std::hex << target << std::endl;
@@ -79,14 +79,12 @@ void BRANCH::check(bool taken, uint32_t target) {
     }
 }
 
-void BRANCH::throwException(uint32_t* target) {
+void BRANCH::throwException(void) {
 #ifdef DEBUG	
 	std::cout << "ERROR: Misaligned target" << std::endl;
 #endif
 
-#ifdef CONTINUE 
-	*target = *target - (*target%4);
-#elif  ISR
+#ifdef ISR
 	// TODO: Connect to ISR
 #else  
 	abort();

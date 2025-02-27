@@ -49,28 +49,13 @@ int immCheck(void) {
 	BRANCH branch;
 	int val = 1;
 	int funct = 0b000;
-
-	// TEST: Checking for misalignment
-	uint32_t target = 0x00000AAC;
-	int imm_u = 0x15;
-	int imm_l = 0x0F;
+	uint32_t target, instr;
+	int imm_u, imm_l;
 	int rs1 = 4;
 	int rs2 = 5;
-
-	// Make 1st instr
-	uint32_t instr = (imm_u << 25) | (rs2 << 20) | (rs1 << 15) | (funct << 12) | (imm_l << 7) | (OPCODE);
-
-	regs->updatePC(0x00000004);
+	
 	regs->write(rs1, val);
 	regs->write(rs2, val);
-	
-	branch.decode(instr);
-	branch.execute();
-	
-	if (regs->readPC() != target) test_passed |= -1;
-#ifdef DEBUG
-	std::cout << "PC after branch: " << std::hex << regs->readPC() << std::endl;
-#endif
 
 	// TEST: Checking for sign extension
 	target = 0xFFFFFFFC;
@@ -98,7 +83,7 @@ int branch_t(void) {
 	int funct;
 	std::array<int, 5> expected;
 
-	std::cout << "++++ Testing BRANCH imm. aligment and sign extention ++++" << std::endl;
+	std::cout << "++++ Testing BRANCH imm. sign extention ++++" << std::endl;
 	test_passed |= immCheck();
 
 
