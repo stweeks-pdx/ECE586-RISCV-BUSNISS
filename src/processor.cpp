@@ -43,8 +43,6 @@ static std::unique_ptr<JAL> jalOp;
 static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<ALUI> aluiOp; 
 static std::unique_ptr<JAL> jalOp;
-static std::unique_ptr<JALR> jalrOp;
-static std::unique_ptr<ALUI> aluiOp; 
 
 void constructMap(void) {
 	// create ALU operation
