@@ -1,4 +1,4 @@
 obj/*
 bin/*
-images/integration/a.out
-images/integration/*.o
+images/integration/**/*.out
+images/integration/**/*.o
