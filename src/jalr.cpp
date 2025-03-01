@@ -5,7 +5,7 @@
 
 
 extern std::unique_ptr<RegFile> regs;
-//extern bool continueSim;
+extern bool continueSim;
 
 constexpr uint32_t REGMASK = 0x0000001F;
 constexpr uint32_t IMMMASK = 0x00000FFF;
@@ -36,12 +36,11 @@ void JALR::execute() {
 	#ifdef DEBUG
 	printf("Writing 0x%8X to register %d, new PC address is 0x%8X. RS1(%d) value was 0x%8X\n", regs->readPC(), rd, target, rs1, regs->read(rs1));
 	#endif
-		if(rd == ra && target == 0){
+		if(rs1 == ra && target == 0 && rd == zero){
 			//#ifdef DEBUG
-			printf("Goodbye! Target is 0x%x", target);
+			printf("Goodbye! Target is 0x%x\n", target);
 			//#endif
-			exit(0);
-			//continueSim = false;	
+			continueSim = false;	
 		}
 	}
 	else{
