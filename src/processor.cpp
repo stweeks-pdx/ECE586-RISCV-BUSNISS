@@ -12,7 +12,7 @@
 #include "jalr.hpp"
 #include "alui.hpp"
 
-
+#include <iostream>
 #include <cstdio>
 #include <memory>
 #include <cstdlib>
