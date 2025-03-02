@@ -11,7 +11,7 @@
 #include "branch.hpp"
 #include "alui.hpp"
 
-
+#include <iostream>
 #include <cstdio>
 #include <memory>
 #include <cstdlib>
@@ -66,10 +66,14 @@ void constructMap(void) {
 	instrMap[ALUIOP] = std::move(aluiOp);
 }
 
-void fetch(void) {
+void fetch(bool verboseMode) {
 	uint32_t pc = regs->readPC();
 	uint32_t instr = mem->readWord(pc);
-	regs->updatePC((regs->readPC() + 4));
+	regs->updatePC((regs->readPC() + NUMBYTESWORD));
+
+	if (verboseMode) {
+		std::cout << "Grabbed instruction: " << std::hex << instr << "   PC is: " << std::hex << pc << std::endl;
+	}
 	
 	// TODO: REMOVE WITH JUMP CLASS DOING THIS
 	if (instr == 0) {
@@ -77,12 +81,17 @@ void fetch(void) {
 		mem->print('z');
 		exit(0);
 	}
-
 	uint8_t opcode = instr & OPCODEMASK;
 	std::unique_ptr<InstrBase>& opRef = instrMap.at(opcode);
 
 	opRef->decode(instr);
 
 	opRef->execute();
+
+	if (verboseMode) {
+		regs->print();
+		std::cout << std::endl;
+		std::cout << std::endl;
+	}
 	return;
 }
