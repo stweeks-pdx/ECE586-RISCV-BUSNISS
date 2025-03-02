@@ -12,6 +12,7 @@
 #include "store.hpp"
 #include "lui.hpp"
 #include "auipc.hpp"
+#include "jalr.hpp"
 #include "branch.hpp"
 
 extern std::unique_ptr<RegFile> regs;
@@ -24,6 +25,7 @@ static std::unique_ptr<LOAD> loadOp;
 static std::unique_ptr<STORE> storeOp;
 static std::unique_ptr<LUI> luiOp;
 static std::unique_ptr<AUIPC> auipcOp;
+static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<BRANCH> branchOp;
 
 void constructMap(void) {
@@ -46,6 +48,10 @@ void constructMap(void) {
 	// create AUIPC operation
 	auipcOp = std::make_unique<AUIPC>();
 	instrMap[AUIPCOP] = std::move(auipcOp);
+
+	//create JALR operation
+	jalrOp = std::make_unique<JALR>();
+	instrMap[JALROP] = std::move(jalrOp);
 
 	// create BRANCH operation
 	branchOp = std::make_unique<BRANCH>();
