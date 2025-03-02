@@ -27,7 +27,7 @@ void debugMode(void) {
 			    regs->print();
 			    break;
 		    case printMem:
-			    mem->print();
+			    mem->print('-');
 			    break;
 		    case printInst:
 			    std::cout << "Instruction is: " << std::hex << mem->readWord((regs->readPC() - 4)) << std::endl;

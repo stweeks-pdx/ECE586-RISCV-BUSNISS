@@ -17,6 +17,8 @@ std::string fileName = ".//images//program.mem";
 std::unique_ptr<RegFile> regs;
 std::unique_ptr<Memory> mem;
 
+bool continueSim = true;
+
 int main(int argc, char *argv[]) {
     // read and interprete CLI
     int c;
@@ -71,13 +73,13 @@ int main(int argc, char *argv[]) {
     // Construct our encoding map
     constructMap();
 
-    while(true) {
+    while(continueSim) {
         fetch(verboseMode);
 	if (debugger) debugMode();
     }
 
     if (!verboseMode) {
-	    std::cout << "Final PC is: " << std::hex << (regs->readPC() - NUMBYTESWORD) << std::endl;
+	    std::cout << "Final PC is: " << std::hex << regs->readPC() << std::endl;
 	    regs->print();
     }
 
