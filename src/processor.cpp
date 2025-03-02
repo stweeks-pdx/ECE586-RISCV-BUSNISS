@@ -13,6 +13,7 @@
 #include "lui.hpp"
 #include "auipc.hpp"
 #include "jalr.hpp"
+#include "branch.hpp"
 
 extern std::unique_ptr<RegFile> regs;
 extern std::unique_ptr<Memory> mem;
@@ -25,6 +26,7 @@ static std::unique_ptr<STORE> storeOp;
 static std::unique_ptr<LUI> luiOp;
 static std::unique_ptr<AUIPC> auipcOp;
 static std::unique_ptr<JALR> jalrOp;
+static std::unique_ptr<BRANCH> branchOp;
 
 void constructMap(void) {
 	// create ALU operation
@@ -50,6 +52,10 @@ void constructMap(void) {
 	//create JALR operation
 	jalrOp = std::make_unique<JALR>();
 	instrMap[JALROP] = std::move(jalrOp);
+
+	// create BRANCH operation
+	branchOp = std::make_unique<BRANCH>();
+	instrMap[BRANCHOP] = std::move(branchOp);
 }
 
 void fetch(void) {
