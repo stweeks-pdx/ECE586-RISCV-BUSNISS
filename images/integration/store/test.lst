@@ -1,0 +1,20 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              	
+   5              	_start:
+   6 0000 130191FF 		addi	sp,sp,-7
+   7 0004 93000000 		li	ra,0
+   8 0008 1303F007 		li	t1,0x7f
+   9 000c 93038008 		li	t2,0x88
+  10 0010 37AEA5A5 		li	t3,0xA5A5A5A5
+  10      130E5E5A 
+  11 0018 23036100 		sb	t1,6(sp)
+  12 001c 23127100 		sh	t2,4(sp)
+  13 0020 2320C101 		sw	t3,0(sp)
+  14 0024 1301C1FF 		addi	sp,sp,-4
+  15 0028 23206100 		sw	t1,0(sp)
+  16 002c 67800000 		jr	ra
