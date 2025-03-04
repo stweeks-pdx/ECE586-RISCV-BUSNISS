@@ -7,6 +7,7 @@
 int registers_t(void);
 int alu_t(void);
 extern int branch_t(void);
+int jal_t(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
@@ -29,6 +30,10 @@ int main() {
 	// Branch Test
 	std::cout << "Running Branch test" << std::endl;
 	test_passed |= branch_t();
+
+	// JAL Test
+	std::cout << "Running JAL test" << std::endl;
+	test_passed |= jal_t();
 
 
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
