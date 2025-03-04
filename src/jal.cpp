@@ -2,6 +2,7 @@
 #include "regfile.hpp"
 #include <memory>
 #include <iostream>
+#include <cstdio>
 
 
 extern std::unique_ptr<RegFile> regs;
