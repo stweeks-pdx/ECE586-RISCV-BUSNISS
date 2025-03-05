@@ -11,7 +11,6 @@
 #include "jal.hpp"
 #include "jalr.hpp"
 #include "alui.hpp"
-
 #include <iostream>
 #include <cstdio>
 #include <memory>
@@ -70,6 +69,7 @@ void constructMap(void) {
 	// create ALU Immediate operation
 	aluiOp = std::make_unique<ALUI>();
 	instrMap[ALUIOP] = std::move(aluiOp);
+
 }
 
 void fetch(bool verboseMode) {
