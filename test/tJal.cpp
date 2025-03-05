@@ -15,11 +15,11 @@ int posJump(){
 	uint32_t imm = 0x759A4;
 	JAL jal;
 
-	test = (imm << 12) | (rd << 7) | opcode;
+	jump = (imm << 12) | (rd << 7) | opcode;
 
 	regs->updatePC(0x4);
 
-	uint32_t ePC = 0x527AC;
+	uint32_t ePC = 0xA4F58;
         uint32_t eRA = regs->readPC();	
 	
 	jal.decode(jump);
@@ -43,11 +43,11 @@ int negJump(){
 	uint32_t imm = 0xE59A4;
 	JAL jal;
 
-	test = (imm << 12) | (rd << 7) | opcode;
+	jump = (imm << 12) | (rd << 7) | opcode;
 
 	regs->updatePC(0x4);
 
-	uint32_t ePC = 0xD272C;
+	uint32_t ePC = 0xFFFA4E58;
 	uint32_t eRA = regs->readPC();
 
 	jal.decode(jump);
@@ -68,16 +68,38 @@ int badJump(){
 	uint32_t jump;
 	uint8_t opcode = JALOP;
 	uint8_t rd = 0x22;
-	uint32_t imm = 0x759AB;
+	uint32_t imm = 0x75AAB;
 	JAL jal;
 
-	test = (imm << 12) | (rd << 7) | opcode;
+	jump = (imm << 12) | (rd << 7) | opcode;
 
 	regs->updatePC(0x4);
 
+	uint32_t ePC = 0x4; //We shouldn't take this jump, bad imm field
+        uint32_t eRA = regs->read(rd);
 
+	jal.decode(jump);
+	jal.execute();
+
+	if (ePC != regs->readPC() || eRA != regs->read(rd)){
+		printf("Bad jump test failed! PC is 0x%X, expected is 0x%X, RA is 0x%X, expected is 0x%X", regs->readPC(), ePC, regs->read(rd), eRA);
+		testPassed = -1;
+		regs->print();
+	}	
+
+	return testPassed;
 
 }
 
+int jal_t(){
+	int testPassed = 0;
+	std::cout << "++++ Testing positive displacement ++++" << std::endl;
+	testPassed |= posJump();
+	std::cout << "++++ Testing negative displacement ++++" << std::endl;
+	testPassed |= negJump();
+	std::cout << "++++ Testing incorrectly encoded imm field ++++" << std::endl;
+	testPassed |= badJump();
 
+	return testPassed;
+}
 
