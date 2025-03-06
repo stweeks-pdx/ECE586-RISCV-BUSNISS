@@ -7,7 +7,7 @@
 
 extern std::unique_ptr<RegFile> regs;
 
-int posJump(){
+int positiveJump(){
 	int testPassed = 0;
 	uint32_t jump;
 	uint8_t opcode = JALOP;
@@ -35,7 +35,7 @@ int posJump(){
 	return testPassed;
 }
 
-int negJump(){
+int negativeJump(){
 	int testPassed = 0;
 	uint32_t jump;
 	uint8_t opcode = JALOP;
@@ -63,7 +63,7 @@ int negJump(){
 
 }
 
-int badJump(){
+int badImmJump(){
 	int testPassed = 0;
 	uint32_t jump;
 	uint8_t opcode = JALOP;
@@ -94,11 +94,11 @@ int badJump(){
 int jal_t(){
 	int testPassed = 0;
 	std::cout << "++++ Testing positive displacement ++++" << std::endl;
-	testPassed |= posJump();
+	testPassed |= positiveJump();
 	std::cout << "++++ Testing negative displacement ++++" << std::endl;
-	testPassed |= negJump();
+	testPassed |= negativeJump();
 	std::cout << "++++ Testing incorrectly encoded imm field ++++" << std::endl;
-	testPassed |= badJump();
+	testPassed |= badImmJump();
 
 	return testPassed;
 }
