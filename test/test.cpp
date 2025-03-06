@@ -6,6 +6,7 @@
 
 int registers_t(void);
 int alu_t(void);
+int jalrTest(void);
 extern int branch_t(void);
 int jal_t(void);
 int alui_t(void);
@@ -28,13 +29,13 @@ int main() {
 	regs = std::make_unique<RegFile>(PROGRAMSTART, STACKADDRESS);
 	test_passed |= alu_t();
 
-	// Branch Test
-	std::cout << "Running Branch test" << std::endl;
-	test_passed |= branch_t();
-
 	//JALR Test
 	std::cout << "Running JALR op test" << std::endl;
 	test_passed |= jalrTest();
+
+	// Branch Test
+	std::cout << "Running Branch test" << std::endl;
+	test_passed |= branch_t();
 
 	// ALUI Test
 	// reset regs file
@@ -46,6 +47,7 @@ int main() {
 	// JAL Test
 	std::cout << "Running JAL test" << std::endl;
 	test_passed |= jal_t();
+
 
 	std::cout << "TEST " << ((test_passed == 0) ? "PASSED" : "FAILED") << std::endl;
 

@@ -7,8 +7,8 @@
 #include "store.hpp"
 #include "lui.hpp"
 #include "auipc.hpp"
-#include "branch.hpp"
 #include "jalr.hpp"
+#include "branch.hpp"
 #include "alui.hpp"
 #include "jal.hpp"
 
@@ -29,9 +29,9 @@ static std::unique_ptr<LOAD> loadOp;
 static std::unique_ptr<STORE> storeOp;
 static std::unique_ptr<LUI> luiOp;
 static std::unique_ptr<AUIPC> auipcOp;
+static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<BRANCH> branchOp;
 static std::unique_ptr<JAL> jalOp;
-static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<ALUI> aluiOp; 
 
 void constructMap(void) {
@@ -55,22 +55,21 @@ void constructMap(void) {
 	auipcOp = std::make_unique<AUIPC>();
 	instrMap[AUIPCOP] = std::move(auipcOp);
 
-	// create BRANCH operation
-	branchOp = std::make_unique<BRANCH>();
-	instrMap[BRANCHOP] = std::move(branchOp);
-
 	//create JALR operation
 	jalrOp = std::make_unique<JALR>();
 	instrMap[JALROP] = std::move(jalrOp);
 
-	// create ALU Immediate operation
-	aluiOp = std::make_unique<ALUI>();
-	instrMap[ALUIOP] = std::move(aluiOp);
+	// create BRANCH operation
+	branchOp = std::make_unique<BRANCH>();
+	instrMap[BRANCHOP] = std::move(branchOp);
 
 	// create JAL operation
 	jalOp = std::make_unique<JAL>();
 	instrMap[JALOP] = std::move(jalOp);
 
+	// create ALU Immediate operation
+	aluiOp = std::make_unique<ALUI>();
+	instrMap[ALUIOP] = std::move(aluiOp);
 }
 
 void fetch(bool verboseMode) {
