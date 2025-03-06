@@ -71,13 +71,6 @@ void constructMap(void) {
 	jalOp = std::make_unique<JAL>();
 	instrMap[JALOP] = std::move(jalOp);
 
-	//create JALR operation
-	jalrOp = std::make_unique<JALR>();
-	instrMap[JALROP] = std::move(jalrOp);
-
-	// create ALU Immediate operation
-	aluiOp = std::make_unique<ALUI>();
-	instrMap[ALUIOP] = std::move(aluiOp);
 }
 
 void fetch(bool verboseMode) {
