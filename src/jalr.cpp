@@ -36,6 +36,7 @@ void JALR::execute() {
 	#ifdef DEBUG
 	printf("Writing 0x%8X to register %d, new PC address is 0x%8X. RS1(%d) value was 0x%8X\n", regs->readPC(), rd, target, rs1, regs->read(rs1));
 	#endif
+		if(rs1 == ra && target == 0 && rd == zero){
 			//#ifdef DEBUG
 			printf("Goodbye! Target is 0x%x\n", target);
 			//#endif

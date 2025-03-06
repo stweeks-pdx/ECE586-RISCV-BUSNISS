@@ -8,6 +8,7 @@ int registers_t(void);
 int alu_t(void);
 extern int branch_t(void);
 int jal_t(void);
+int alui_t(void);
 
 // These externs are needed for some source files that will be tested
 // Placed here for now
