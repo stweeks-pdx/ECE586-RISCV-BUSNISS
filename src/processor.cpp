@@ -10,6 +10,7 @@
 #include "jalr.hpp"
 #include "branch.hpp"
 #include "alui.hpp"
+#include "jal.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -30,6 +31,7 @@ static std::unique_ptr<LUI> luiOp;
 static std::unique_ptr<AUIPC> auipcOp;
 static std::unique_ptr<JALR> jalrOp;
 static std::unique_ptr<BRANCH> branchOp;
+static std::unique_ptr<JAL> jalOp;
 static std::unique_ptr<ALUI> aluiOp; 
 
 void constructMap(void) {
@@ -60,6 +62,10 @@ void constructMap(void) {
 	// create BRANCH operation
 	branchOp = std::make_unique<BRANCH>();
 	instrMap[BRANCHOP] = std::move(branchOp);
+
+	// create JAL operation
+	jalOp = std::make_unique<JAL>();
+	instrMap[JALOP] = std::move(jalOp);
 
 	// create ALU Immediate operation
 	aluiOp = std::make_unique<ALUI>();
