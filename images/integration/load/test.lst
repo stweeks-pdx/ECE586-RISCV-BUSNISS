@@ -1,0 +1,29 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		.equ all1, 0xffffffff
+   5              	_start:
+   6 0000 93000000 		mv	ra,zero
+   7 0004 17090000 		la	s2,var
+   7      13090900 
+   8 000c 9302F0FF 		li	t0,all1
+   9 0010 13030000 		mv	t1,zero
+  10 0014 83020900 		lb	t0,0(s2)
+  11 0018 03031900 		lb	t1,1(s2)
+  12 001c 9303F0FF 		li	t2,all1
+  13 0020 83433900 		lbu	t2,3(s2)
+  14 0024 130EF0FF 		li	t3,all1
+  15 0028 930E0000 		mv	t4,zero
+  16 002c 130FF0FF 		li	t5,all1
+  17 0030 031E1900 		lh	t3,1(s2)
+  18 0034 831E0900 		lh	t4,0(s2)
+  19 0038 035F2900 		lhu	t5,2(s2)
+  20 003c 930FF0FF 		li	t6,all1
+  21 0040 832F0900 		lw	t6,0(s2)
+  22 0044 67800000 		jr	ra
+  23              	
+  24              	
+  25 0048 758A659A 	var: .word 0x9A658A75
