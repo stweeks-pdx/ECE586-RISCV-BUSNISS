@@ -1,0 +1,19 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              			.align 2
+   3              			.global _start
+   4              			.equ nco, 0x000 #no change OR
+   5              			.equ sao, -1 #OR to set all bits
+   6              			.equ tc3, -1366 #mask for test case 3
+   7              			.equ tc4, 0x555 #mask for test case 4
+   8              	
+   9              	_start:
+  10 0000 9302A0AA 		li t0, tc3
+  11 0004 13055055 		li a0, tc4
+  12 0008 13E30200 		ori t1, t0, nco
+  13 000c 9365F5FF 		ori a1, a0, sao
+  14 0010 93E35255 		ori t2, t0, tc4
+  15 0014 1366A5AA 		ori a2, a0, tc3
+  16 0018 67800000 		jr ra
