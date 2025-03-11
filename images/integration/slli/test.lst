@@ -1,0 +1,26 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              			.align 2
+   3              			.global _start
+   4              			.equ tc1, 0xfffffffe
+   5              			.equ tc2, 0
+   6              			.equ tc3, -21
+   7              			.equ tc4, 21
+   8              			.equ ms, 31 #maximum shift amount
+   9              			.equ ls, 14 #arbitrary shift amount
+  10              	
+  11              	_start:
+  12 0000 93000000 		mv ra, zero
+  13 0004 9302E0FF 		li t0, tc1 #load number to be shifted until it is equal to 0
+  14 0008 13040000 		li s0, tc2 #load 0 to be shifted
+  15 000c 1305B0FE 		li a0, tc3 #load negative number to be shifted
+  16 0010 130E5001 		li t3, tc4 #load positive number to be shifted
+  17 0014 1393F201 		slli t1, t0, 31 #shift until 0
+  18 0018 9314F401 		slli s1, s0, 31 #shift 0 as much as possible, should still be 0
+  19 001c 9315E500 		slli a1, a0, 14 #shift a negative number
+  20 0020 931EEE00 		slli t4, t3, 14 #shift a positive number
+  21 0024 131F0E00 		slli t5, t3, 0 #shift a positive number by 0
+  22 0028 13190400 		slli s2, s0, 0 #shift 0 by 0
+  23 002c 67800000 		jr ra
