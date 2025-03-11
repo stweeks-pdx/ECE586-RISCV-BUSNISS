@@ -1,0 +1,25 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              			.align 2
+   3              			.global _start
+   4              			.equ ssr, 0x0E
+   5              			.equ bsr, 0x77
+   6              			.equ nsr, 0xFFD
+   7              			.equ ps, 0x55555555
+   8              			.equ ns, 0x80000000
+   9              	
+  10              	_start:
+  11 0000 93000000 		mv 	ra, zero
+  12 0004 B7525555 		li	 t0, ps #Load positive shift subject into t0
+  12      93825255 
+  13 000c 370E0080 		li	 t3, ns #Load negative shift subject into t3
+  14 0010 93D20240 		srai	 t0, t0, 0 #0 shift
+  15 0014 13D3E240 		srai	 t1, t0, ssr #Shift by less than 31
+  16              	#	srai	 t2, t0, bsr #Shift by more than 31, should shift by 25
+  17 0018 135E0E40 		srai	 t3, t3, 0 #0 shift a negative
+  18 001c 935EEE40 		srai	 t4, t3, ssr #small shift a negative number
+  19              	#	srai	 t5, t3, bsr #big shift a negative number, should shift by 25
+  20              	#	srai	 t6, t3, nsr #shift a number by a negative number, should shift by 30
+  21 0020 67800000 		jr	ra
