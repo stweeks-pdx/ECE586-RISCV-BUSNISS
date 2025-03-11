@@ -8,5 +8,7 @@ GAS LISTING test.s 			page 1
    5              		.equ negNum, 0x8B23D
    6              	
    7              	_start:
-   8 0000 B7E2AB78 		lui	t0, posNum
-   9 0004 37D3238B 		lui 	t1, negNum	
+   8 0000 93000000 		mv	ra, zero
+   9 0004 B7E2AB78 		lui	t0, posNum
+  10 0008 37D3238B 		lui 	t1, negNum	
+  11 000c 67800000 		jr	ra
