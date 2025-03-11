@@ -1,0 +1,14 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		.equ posNum, 0x77777
+   5              		.equ negNum, 0x80000
+   6              	
+   7              	_start:
+   8 0000 93000000 		mv 	ra, zero
+   9 0004 97727777 		auipc	t0, posNum
+  10 0008 17030080 		auipc	t1, negNum
+  11 000c 67800000 		jr 	ra	
