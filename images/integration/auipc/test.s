@@ -8,5 +8,4 @@ _start:
 	mv 	ra, zero
 	auipc	t0, posNum
 	auipc	t1, negNum
-	auipc	t2, 0x55555
 	jr 	ra	
