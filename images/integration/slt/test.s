@@ -14,6 +14,16 @@ _start:
 	li	t1, bpn
 	li	t2, snn
 	li	t3, bnn
+	li	t4, 0 
+	li	t5, 0 
+	li	t6, 0 
+	li	s1, 0 
+	li	s2, 1
+	li	s3, 1
+	li 	s4, 1
+	li	s5, 1
+	li	s6, 1
+	li	s7, 1
  	slt	t4, t0, t1
 	slt	t5, t2, t3
 	slt	t6, t3, t0
@@ -22,5 +32,7 @@ _start:
 	slt	s3, t3, t2
 	slt	s4, t1, t1
 	slt 	s5, zero, zero
+	slt	s6, t0, t2
+	slt	s7, t1, zero
 	jr	ra
 		

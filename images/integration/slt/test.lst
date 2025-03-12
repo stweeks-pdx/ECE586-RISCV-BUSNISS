@@ -17,13 +17,25 @@ GAS LISTING test.s 			page 1
   14 0008 13034006 		li	t1, bpn
   15 000c 930340ED 		li	t2, snn
   16 0010 130EE0FC 		li	t3, bnn
-  17 0014 B3AE6200 	 	slt	t4, t0, t1
-  18 0018 33AFC301 		slt	t5, t2, t3
-  19 001c B32F5E00 		slt	t6, t3, t0
-  20 0020 B3245000 		slt	s1, zero, t0
-  21 0024 33295300 		slt	s2, t1, t0
-  22 0028 B3297E00 		slt	s3, t3, t2
-  23 002c 332A6300 		slt	s4, t1, t1
-  24 0030 B32A0000 		slt 	s5, zero, zero
-  25 0034 67800000 		jr	ra
-  26              			
+  17 0014 930E0000 		li	t4, 0 
+  18 0018 130F0000 		li	t5, 0 
+  19 001c 930F0000 		li	t6, 0 
+  20 0020 93040000 		li	s1, 0 
+  21 0024 13091000 		li	s2, 1
+  22 0028 93091000 		li	s3, 1
+  23 002c 130A1000 		li 	s4, 1
+  24 0030 930A1000 		li	s5, 1
+  25 0034 130B1000 		li	s6, 1
+  26 0038 930B1000 		li	s7, 1
+  27 003c B3AE6200 	 	slt	t4, t0, t1
+  28 0040 33AFC301 		slt	t5, t2, t3
+  29 0044 B32F5E00 		slt	t6, t3, t0
+  30 0048 B3245000 		slt	s1, zero, t0
+  31 004c 33295300 		slt	s2, t1, t0
+  32 0050 B3297E00 		slt	s3, t3, t2
+  33 0054 332A6300 		slt	s4, t1, t1
+  34 0058 B32A0000 		slt 	s5, zero, zero
+  35 005c 33AB7200 		slt	s6, t0, t2
+  36 0060 B32B0300 		slt	s7, t1, zero
+  37 0064 67800000 		jr	ra
+  38              			
