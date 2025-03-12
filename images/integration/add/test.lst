@@ -1,0 +1,25 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		
+   5              		.equ posNum, 100
+   6              		.equ negNum, -225
+   7              		.equ recipNum, -100
+   8              			 
+   9              	
+  10              	_start:
+  11 0000 93000000 		mv	ra, zero
+  12 0004 93024006 		li	t0, posNum
+  13 0008 1303F0F1 		li	t1, negNum
+  14 000c 9303C0F9 		li	t2, recipNum
+  15 0010 B3840200 		add	s1, t0, zero
+  16 0014 33090300 		add	s2, t1, zero
+  17 0018 B3897200 		add	s3, t0, t2
+  18 001c 338E6200 		add	t3, t0, t1
+  19 0020 B38E5200 		add	t4, t0, t0
+  20 0024 330F6300 		add	t5, t1, t1
+  21 0028 67800000 		jr 	ra	
+  22              		
