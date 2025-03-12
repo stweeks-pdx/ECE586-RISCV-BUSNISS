@@ -10,7 +10,7 @@ _start:
 	xori 	t1, t0, 133	#XOR t0 with itself
 	xori 	t2, t0, -134	#XOR t0 with its complement
 	li	t3, 100
-	xori	t4, t0, -1	#NOT instruction
+	not	t4, t0
 	xori	t5, t3, alla 
 	xori	t6, t3, all5
 	jr	ra
