@@ -1,0 +1,36 @@
+GAS LISTING test.s 			page 1
+
+
+   1              			.section .text
+   2              			.align 2
+   3              			.global _start
+   4              			.equ posi, 15 #positive immediate
+   5              			.equ negi, -15 #negative immediate
+   6              	
+   7              	_start:
+   8 0000 9302E000 		li t0, 14
+   9 0004 130320FF 		li t1, -14
+  10 0008 930300FF 		li t2, -16
+  11 000c 130E0001 		li t3, 16
+  12 0010 930E10FF 		li t4, -15
+  13 0014 130FF000 		li t5, 15
+  14 0018 930F0000 		li t6, 0
+  15 001c 13041000 		li s0, 1
+  16 0020 93041000 		li s1, 1
+  17 0024 13091000 		li s2, 1
+  18 0028 93091000 		li s3, 1
+  19 002c 130A1000 		li s4, 1
+  20 0030 930A1000 		li s5, 1
+  21 0034 130B1000 		li s6, 1
+  22 0038 13A5F200 		slti a0, t0, posi #test case 1
+  23 003c 93A513FF 		slti a1, t2, negi #test case 2
+  24 0040 1326F300 		slti a2, t1, posi #test case 3
+  25 0044 93A6FF00 		slti a3, t6, posi #test case 4
+  26 0048 1324FE00 		slti s0, t3, posi #test case 5
+  27 004c 932413FF 		slti s1, t1, negi #test case 6
+  28 0050 13A912FF 		slti s2, t0, negi #test case 7
+  29 0054 93A90200 		slti s3, t0, 0	  #test case 8
+  30 0058 132AFF00 		slti s4, t5, posi #test case 9
+  31 005c 93AA0F00 		slti s5, t6, 0 	  #test case 10
+  32 0060 13AB1EFF 		slti s6, t4, negi #test case 9, but negative
+  33 0064 67800000 		jr ra
