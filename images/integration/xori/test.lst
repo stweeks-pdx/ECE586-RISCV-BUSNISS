@@ -10,11 +10,11 @@ GAS LISTING test.s 			page 1
    7              	_start:
    8 0000 93000000 		mv	ra, zero
    9 0004 93025008 		li 	t0, 133
-  10 0008 93C25208 		xori 	t0, t0, 133	#XOR t0 with itself
-  11 000c 13C3A2F7 		xori 	t1, t0, -134	#XOR t0 with its complement
-  12 0010 93034006 		li	t2, 100
-  13 0014 13CEF2FF 		xori	t3, t0, -1	#NOT instruction
-  14 0018 93CEA30A 		xori	t4, t2, alla 
-  15 001c 13CF5355 		xori	t5, t2, all5
+  10 0008 13C35208 		xori 	t1, t0, 133	#XOR t0 with itself
+  11 000c 93C3A2F7 		xori 	t2, t0, -134	#XOR t0 with its complement
+  12 0010 130E4006 		li	t3, 100
+  13 0014 93CEF2FF 		xori	t4, t0, -1	#NOT instruction
+  14 0018 134FAE0A 		xori	t5, t3, alla 
+  15 001c 934F5E55 		xori	t6, t3, all5
   16 0020 67800000 		jr	ra
   17              	
