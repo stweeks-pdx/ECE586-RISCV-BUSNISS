@@ -1,0 +1,18 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              			.align 2
+   3              			.global _start
+   4              			.equ caa, 0x000 #clear all AND
+   5              			.equ nca, -1 #no change AND
+   6              			.equ tc3, -1366 #mask for test case 3
+   7              			.equ tc4, 0x555 #mask for test case 4
+   8              	
+   9              	_start:
+  10 0000 9302B07B 		li t0, 0x7BB
+  11 0004 13F30200 		andi t1, t0, caa
+  12 0008 93F3F2FF 		andi t2, t0, nca
+  13 000c 13F4A2AA 		andi s0, t0, tc3
+  14 0010 93F45255 		andi s1, t0, tc4
+  15 0014 67800000 		jr ra

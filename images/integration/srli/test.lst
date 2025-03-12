@@ -1,0 +1,23 @@
+GAS LISTING test.s 			page 1
+
+
+   1              			.section .text
+   2              				.align 2
+   3              				.global _start
+   4              				.equ tc1, 0x7fffffff
+   5              				.equ tc2, 0
+   6              				.equ tc4, 45
+   7              	
+   8              	_start:
+   9 0000 93000000 		mv ra, zero
+  10 0004 B7020080 		li t0, tc1 #load -1 for test cases 1 and 3
+  10      9382F2FF 
+  11 000c 130E0000 		li t3, tc2 #load 0 for test case 2
+  12 0010 130FD002 		li t5, tc4 #load an arbitrary positive integer for test case 4
+  13 0014 13D3F201 		srli t1, t0, 31 #test case 1
+  14 0018 93D38200 		srli t2, t0, 8 #test case 3
+  15 001c 935E0E00 		srli t4, t3, 0 #test case 2
+  16 0020 935F3F00 		srli t6, t5, 3 #test case 4
+  17 0024 1355DE01 		srli a0, t3, 29 #shift 0 by some number
+  18 0028 93550F00 		srli a1, t5, 0 #shift a number by 0
+  19 002c 67800000 		jr ra
