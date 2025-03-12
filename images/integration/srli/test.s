@@ -7,7 +7,7 @@
 
 _start:
 	mv ra, zero
-	li t0, tc1 #load -1 for test cases 1 and 3
+	li t0, tc1 #load a large number for test cases 1 and 3
 	li t3, tc2 #load 0 for test case 2
 	li t5, tc4 #load an arbitrary positive integer for test case 4
 	srli t1, t0, 31 #test case 1
