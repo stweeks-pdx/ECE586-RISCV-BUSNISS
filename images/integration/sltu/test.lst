@@ -1,0 +1,39 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		
+   5              		.equ bpn, 200
+   6              		.equ spn, 50
+   7              		.equ snn, -50
+   8              		.equ bnn, -200
+   9              	
+  10              	_start:
+  11 0000 93000000 		mv	ra, zero	
+  12 0004 9302800C 		li	t0, bpn
+  13 0008 13032003 		li	t1, spn
+  14 000c 9303E0FC 		li	t2, snn
+  15 0010 130E80F3 		li 	t3, bnn
+  16 0014 930E0000 		li	t4, 0
+  17 0018 130F0000 		li 	t5, 0
+  18 001c 930F0000 		li	t6, 0
+  19 0020 93041000 		li	s1, 1
+  20 0024 13091000 		li	s2, 1
+  21 0028 93091000 		li	s3, 1
+  22 002c 130A1000 		li	s4, 1
+  23 0030 930A1000 		li	s5, 1
+  24 0034 130B1000 		li	s6, 1
+  25 0038 930B0000 		li	s7, 0
+  26 003c B33E5300 		sltu	t4, t1, t0
+  27 0040 333F7E00 		sltu	t5, t3, t2
+  28 0044 B33F7300 		sltu	t6, t1, t2
+  29 0048 B3B46200 		sltu	s1, t0, t1
+  30 004c 33B9C301 		sltu	s2, t2, t3
+  31 0050 B3396E00 		sltu	s3, t3, t1
+  32 0054 33BA5200 		sltu	s4, t0, t0
+  33 0058 B33A0000 		sltu	s5, zero, zero
+  34 005c 333B0000 		snez	s6, zero
+  35 0060 B33B6000 		snez	s7, t1 
+  36 0064 67800000 		jr	ra
