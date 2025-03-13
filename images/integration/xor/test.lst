@@ -1,0 +1,25 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		
+   5              		.equ A, 300
+   6              		.equ notA, -301
+   7              		.equ allA, 0xAAA
+   8              		.equ all5, 0x555
+   9              	
+  10              	_start:	
+  11 0000 93000000 		mv	ra, zero
+  12 0004 9302C012 		li	t0, A
+  13 0008 130330ED 		li	t1, notA
+  14 000c B7130000 		li	t2, allA
+  14      9383A3AA 
+  15 0014 130E5055 		li	t3, all5
+  16 0018 B3CE6200 		xor	t4, t0, t1
+  17 001c 33CF5200 		xor	t5, t0, t0
+  18 0020 B3CF7200 		xor	t6, t0, t2
+  19 0024 B3C4C201 		xor	s1, t0, t3
+  20 0028 67800000 		jr	ra
+  21              		
