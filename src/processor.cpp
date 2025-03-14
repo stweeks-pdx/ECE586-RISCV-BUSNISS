@@ -81,12 +81,11 @@ void fetch(bool verboseMode) {
 		std::cout << "Grabbed instruction: " << std::hex << instr << "   PC is: " << std::hex << pc << std::endl;
 	}
 	
-	// TODO: REMOVE WITH JUMP CLASS DOING THIS
 	if (instr == 0) {
 		printf("Instruction word 0x00000000 fetched, you've activated my trap card!\n");
 		regs->print();
 		mem->print('z');
-		exit(0);
+		exit(1);
 	}
 	uint8_t opcode = instr & OPCODEMASK;
 	std::unique_ptr<InstrBase>& opRef = instrMap.at(opcode);
