@@ -83,6 +83,7 @@ void fetch(bool verboseMode) {
 	
 	// TODO: REMOVE WITH JUMP CLASS DOING THIS
 	if (instr == 0) {
+		printf("Instruction word 0x00000000 fetched, you've activated my trap card!\n");
 		regs->print();
 		mem->print('z');
 		exit(0);
