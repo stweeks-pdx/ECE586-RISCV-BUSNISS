@@ -1,0 +1,17 @@
+GAS LISTING test.s 			page 1
+
+
+   1              			.section .text
+   2              			.align 2
+   3              			.global _start
+   4              	
+   5              	.l2:
+   6 0000 1304E07E 		li s0, 0x7ee
+   7 0004 EF020000 		jal t0, 0x008
+   8 0008 67800000 		jr ra
+   9              	_start:
+  10              		
+  11 000c EFF25FFF 		jal t0, .l2
+  12 0010 67800000 		jr ra
+  13              	
+  14              	
