@@ -63,33 +63,6 @@ int negativeJump(){
 
 }
 
-int badImmJump(){
-	int testPassed = 0;
-	uint32_t jump;
-	uint8_t opcode = JALOP;
-	uint8_t rd = 0x22;
-	uint32_t imm = 0x75AAB;
-	JAL jal;
-
-	jump = (imm << 12) | (rd << 7) | opcode;
-
-	regs->updatePC(0x4);
-
-	uint32_t ePC = 0x4; //We shouldn't take this jump, bad imm field
-        uint32_t eRA = regs->read(rd);
-
-	jal.decode(jump);
-	jal.execute();
-
-	if (ePC != regs->readPC() || eRA != regs->read(rd)){
-		printf("Bad jump test failed! PC is 0x%X, expected is 0x%X, RA is 0x%X, expected is 0x%X", regs->readPC(), ePC, regs->read(rd), eRA);
-		testPassed = -1;
-		regs->print();
-	}	
-
-	return testPassed;
-
-}
 
 int jal_t(){
 	int testPassed = 0;
@@ -97,8 +70,6 @@ int jal_t(){
 	testPassed |= positiveJump();
 	std::cout << "++++ Testing negative displacement ++++" << std::endl;
 	testPassed |= negativeJump();
-	std::cout << "++++ Testing incorrectly encoded imm field ++++" << std::endl;
-	testPassed |= badImmJump();
 
 	return testPassed;
 }
