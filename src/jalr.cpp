@@ -25,11 +25,8 @@ void JALR::execute() {
 	if (!func3){
 	uint32_t target = (regs->read(rs1) + imm) & TARMASK;
 		if ((target & ALIGNMASK) != 0){
-			//exception == true
-			#ifdef DEBUG
-			printf("Misaligned memory reference in JALR instruction");
-			#endif
-			return;
+			printf("Misaligned memory reference in JALR instruction, you've activated my trap card!\n");
+			exit(1);
 		}
 	regs->write(rd, regs->readPC());
 	regs->updatePC(target);
@@ -37,9 +34,9 @@ void JALR::execute() {
 	printf("Writing 0x%8X to register %d, new PC address is 0x%8X. RS1(%d) value was 0x%8X\n", regs->readPC(), rd, target, rs1, regs->read(rs1));
 	#endif
 		if(rs1 == ra && target == 0 && rd == zero){
-			//#ifdef DEBUG
+			#ifdef DEBUG
 			printf("Goodbye! Target is 0x%x\n", target);
-			//#endif
+			#endif
 			continueSim = false;	
 		}
 	}

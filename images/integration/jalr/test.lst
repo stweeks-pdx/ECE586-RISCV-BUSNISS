@@ -1,0 +1,32 @@
+GAS LISTING test.s 			page 1
+
+
+   1              			.section .text
+   2              			.align 2
+   3              			.global _start
+   4              	
+   5              	_start:
+   6 0000 17050000 		la a0, .l2
+   6      13050500 
+   7 0008 1305C5FF 		addi a0, a0, -4
+   8 000c 97050000 		la a1, .l3
+   8      93850500 
+   9 0014 9385C5FF 		addi a1, a1, -4
+  10 0018 E7024500 		jalr t0, a0, 4
+  11 001c 37C9ADDE 		li s2, 0xdeadbeef
+  11      1309F9EE 
+  12 0024 93032000 		li t2, 0x2
+  13 0028 130E1000 		li t3, 0x1
+  14 002c 67800300 		jalr zero, t2, 0
+  15 0030 67800000 		jr ra
+  16              	
+  17              	.l3:
+  18 0034 37E40000 		li s0, 0xdead
+  18      1304D4EA 
+  19 003c 67000300 		jr t1
+  20              	
+  21              	.l2:
+  22 0040 B7C40000 		li s1, 0xbeef
+  22      9384F4EE 
+  23 0048 67834500 		jalr t1, a1, 4
+  24 004c 67800200 		jr t0
