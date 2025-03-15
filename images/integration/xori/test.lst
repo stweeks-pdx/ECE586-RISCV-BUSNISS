@@ -1,0 +1,20 @@
+GAS LISTING test.s 			page 1
+
+
+   1              		.section .text
+   2              		.align 2
+   3              		.global _start
+   4              		.equ all5, 0x555
+   5              		.equ alla, 0xAA
+   6              	
+   7              	_start:
+   8 0000 93000000 		mv	ra, zero
+   9 0004 93025008 		li 	t0, 133
+  10 0008 13C35208 		xori 	t1, t0, 133	#XOR t0 with itself
+  11 000c 93C3A2F7 		xori 	t2, t0, -134	#XOR t0 with its complement
+  12 0010 130E4006 		li	t3, 100
+  13 0014 93CEF2FF 		not	t4, t0
+  14 0018 134FAE0A 		xori	t5, t3, alla 
+  15 001c 934F5E55 		xori	t6, t3, all5
+  16 0020 67800000 		jr	ra
+  17              	
