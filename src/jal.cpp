@@ -3,6 +3,7 @@
 #include <memory>
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 
 
 extern std::unique_ptr<RegFile> regs;
@@ -33,10 +34,8 @@ void JAL::execute(){
 	uint32_t target = ((regs->readPC() - 4) + imm);
 
 	if((target % 4) != 0){
-		#ifdef DEBUG
 		std::cout<< "Misaligned memory reference in JAL instruction" << std::endl;
-		#endif
-		return;
+		exit(1);
 	}
 	regs->write(rd, regs->readPC());
 	regs->updatePC(target);

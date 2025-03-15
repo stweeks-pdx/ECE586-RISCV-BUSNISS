@@ -1,0 +1,23 @@
+GAS LISTING test.s 			page 1
+
+
+   1              			.section .text
+   2              				.align 2
+   3              				.global _start
+   4              				.equ nca, 0 #Add that has no change
+   5              				.equ tc3, -25 #test case 3
+   6              				.equ tc4, -20 #test case 4
+   7              				.equ tc5, 20 #test case 5
+   8              	
+   9              	_start:
+  10 0000 93029001 		li t0, 25 #Load A into register t0
+  11 0004 130570FE 		li a0, tc3 #Load -A into register a0
+  12 0008 93050500 		mv a1, a0 #test case 8, a1 = a0
+  13 000c 13830200 		addi t1, t0, nca #test case 1, a+0=a
+  14 0010 13060500 		addi a2, a0, nca #test case 2, -a+0=-a
+  15 0014 938372FE 		addi t2, t0, tc3 #t2 = a+-a=0
+  16 0018 138EC2FE 		addi t3, t0, tc4 #t3 = a+-b (should be 5)
+  17 001c 938E4201 		addi t4, t0, tc5 #t4 = a+b (should be 0x2d)
+  18 0020 9306C5FE 		addi a3, a0, tc4 #a3 = -a+-b (should be -45, or 0xffffffd3)
+  19 0024 13000000 		NOP
+  20 0028 67800000 		jr ra 
