@@ -86,6 +86,14 @@ details of the instruction. This could then be easily expanded to future uses wi
 multiply or floating point. This polymorphism allowed for simpler code, code reuse, and makes additions to the existing project
 seamless.
 
+## Register and Memory
+Register and Memory are singleton objects used throughout this project. They need to be a single living source of true information used by
+every other part of the simulator. The implementation of these also used the standard library to ease common coding mistakes and nasty bugs.
+The memory is a wrapper class around a hash map. This associative array allows the memory to grow as neeeded. The memory class does not protect
+you from writing past the SP or reading from a memory location that hasn't been accessed yet. The register map uses the array container which 
+provides built in safe guards for bounds checking. This also allows us to interact as if a normal raw-array in C without the pitfalls of checks
+and uninitialized values.
+
 # Testing
 For this project we used the [V-model approach](https://dorleco.com/v-model-development-techniques-to-design/) which included integration and unit testing.
 
