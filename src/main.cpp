@@ -18,12 +18,13 @@ std::unique_ptr<RegFile> regs;
 std::unique_ptr<Memory> mem;
 
 bool continueSim = true;
+bool breakpoints = false;
 
 int main(int argc, char *argv[]) {
     // read and interprete CLI
     int c;
     // Parse arguments
-    while((c = getopt(argc, argv, "vf:p:s:dh")) != -1){
+    while((c = getopt(argc, argv, "vf:p:s:dbh")) != -1){
         switch(c){
             case 'v':
                 verboseMode = true;
@@ -40,14 +41,19 @@ int main(int argc, char *argv[]) {
 	    case 'd':
 		debugger = true;
 		break;
-            case 'h':
+	    case 'b':
+		debugger = true;
+		breakpoints = true;
+		break;	    
+	    case 'h':
                 printf("Options for the program are:\n");
                 printf("v -- Verbose mode\n");
                 printf("p -- Program starting address\n");
                 printf("s -- Starting stack address\n");
                 printf("f -- program.mem to be run by the simulator\n");
 		printf("d -- debugging mode that allows step through, print register, print memory, and print instruction\n");
-                printf("Example: ./bin/rvsim -f <filename> -s 2048 -p 1024\n");
+                printf("b -- breakpoints that stop at pre-set breakpoints in memory\n");
+		printf("Example: ./bin/rvsim -f <filename> -s 2048 -p 1024\n");
                 return 0;
             case '?':
                 if(isprint(optopt))
@@ -74,8 +80,8 @@ int main(int argc, char *argv[]) {
     constructMap();
 
     while(continueSim) {
+	if ((debugger && !breakpoints) || (breakpoints && mem->breakCheck(regs->readPC()))) debugMode();
         fetch(verboseMode);
-	if (debugger) debugMode();
     }
 
     if (!verboseMode) {

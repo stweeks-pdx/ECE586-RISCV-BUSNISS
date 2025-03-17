@@ -14,6 +14,7 @@ class Memory
 {
     private:
         std::unordered_map<uint32_t, uint8_t> byteAtMemLoc;
+	std::unordered_map<uint32_t, bool> breakAtMemLoc;
     	uint32_t readMem(uint32_t address, uint8_t n);
 	void writeMem(uint32_t address, uint32_t val, uint8_t n);
 
@@ -25,6 +26,8 @@ class Memory
         void writeByte(uint32_t address, uint8_t val);
         void writeHWord(uint32_t address, uint16_t val);
         void writeWord(uint32_t address, uint32_t val);
+	void addBreak(uint32_t address);
+	bool breakCheck(uint32_t address);
         void print(void);
 	void print(char filler);
         void print(uint32_t start, uint32_t stop);

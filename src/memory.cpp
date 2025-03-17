@@ -15,6 +15,7 @@ Memory::Memory(std::string fileName) {
     std::ifstream f;
     std::string line, address, data;
     int i, j, k;
+    bool breakpoint;
     f.open(fileName);
     if(!f.is_open()) {
         printf("Could not open file %s\n", fileName.c_str());
@@ -26,8 +27,13 @@ Memory::Memory(std::string fileName) {
         j = line.find_first_of("0123456789abcdefABCDEF", i);
         k = line.find_last_of("0123456789abcdefABCDEF");
         data = line.substr(j, k-j+1);
-    printf("Writing %s at %s\n", data.c_str(), address.c_str());    
-        switch(data.size()){
+	breakpoint = (line.find_first_of("xX", k) != std::string::npos);
+#ifdef DEBUG
+    	printf("Writing %s at %s\n", data.c_str(), address.c_str());
+    	printf("\tBreakpoint: %b\n", breakpoint);	
+#endif
+	if(breakpoint) addBreak(std::stoul(address,0,16));
+	switch(data.size()){
             case(2):
                 writeByte(std::stoul(address,0,16), std::stoul(data,0,16));
                 break;
@@ -158,6 +164,31 @@ void Memory::writeHWord(uint32_t address, uint16_t val) {
  */
 void Memory::writeWord(uint32_t address, uint32_t val) {
     writeMem(address, val, NUMBYTESWORD);
+}
+
+/* addBreak
+ *
+ * Adds a breakpoint to the intended memory address
+ *
+ * Inputs:
+ * uint32_t address - memory location to add breakpoint to
+ */
+void Memory::addBreak(uint32_t address) {
+    breakAtMemLoc[address] = true;
+}
+
+/* breakCheck
+ *
+ * Checks whether there is a breakpoint at the intended memory address
+ *
+ * Inputs:
+ * uint32_t address - memory location to check for breakpoint
+ *
+ * Outputs:
+ * bool breakAtMemLoc.count(address) - whether a breakpoint was found
+ */
+bool Memory::breakCheck(uint32_t address) {
+    return breakAtMemLoc.count(address);
 }
 
 /* print(void)
