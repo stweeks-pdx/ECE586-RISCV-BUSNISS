@@ -1,51 +1,63 @@
 GAS LISTING test.s 			page 1
 
 
-   1              			.section .text
-   2              			.align 2
-   3              			.global _start
+   1              	                .section .text
+   2              	                .align 2
+   3              	                .global _start
    4              	
    5              	_start:
-   6 0000 93023000 		li t0, 3
-   7 0004 13034000 		li t1, 4
-   8 0008 9303D0FF 		li t2, -3
-   9 000c 130EC0FF 		li t3, -4
-  10 0010 930E3000 		li t4, 3
-  11 0014 13040000 		li s0, 0
-  12              	
-  13 0018 63EC6200 		bltu t0, t1, .L1
-  14 001c 63665302 		bltu t1, t0, .L2
-  15 0020 63EED203 		bltu t0, t4, .L3
-  16 0024 63E45304 		bltu t2, t0, .L4
-  17 0028 63E87204 		bltu t0, t2, .L5
-  18 002c 67800000 		jr ra
+   6 0000 93023000 	        li t0, 3
+   7 0004 13034000 	        li t1, 4
+   8 0008 9303D0FF 	        li t2, -3
+   9 000c 130EC0FF 	        li t3, -4
+  10 0010 930E3000 	        li t4, 3
+  11 0014 13040000 	        li s0, 0
+  12 0018 6F000001 	        j .begin
+  13              	
+  14              	.misalign:
+  15 001c 63635300 	        bltu t1, t0, mem_loc_2
+  16 0020 0000     	        mem_loc_1: .half 0x0
+  17 0022 0000     	        mem_loc_2: .half 0x0
+  18 0024 67800000 	        jr ra
   19              	
-  20              	.L1:
-  21 0030 13041400 		addi s0, s0, 1
-  22 0034 636A5300 		bltu t1, t0, .L2
-  23 0038 63E2D203 		bltu t0, t4, .L3
-  24 003c 63E85302 		bltu t2, t0, .L4
-  25 0040 63EC7202 		bltu t0, t2, .L5
-  26 0044 67800000 		jr ra
+  20              	.begin:
+  21 0028 63EC6200 	        bltu t0, t1, .L1
+  22 002c 63665302 	        bltu t1, t0, .L2
+  23 0030 63EED203 	        bltu t0, t4, .L3
+  24 0034 63E45304 	        bltu t2, t0, .L4
+  25 0038 63E87204 	        bltu t0, t2, .L5
+  26 003c 6FF01FFE 	        j .misalign
   27              	
-  28              	.L2:
-  29 0048 1304F4FF 		addi s0, s0, -1
-  30 004c 63E8D201 		bltu t0, t4, .L3
-  31 0050 63EE5300 		bltu t2, t0, .L4
-  32 0054 63E27202 		bltu t0, t2, .L5
-  33 0058 67800000 		jr ra
-  34              	
-  35              	.L3:
-  36 005c 1304F4FF 		addi s0, s0, -1
-  37 0060 63E65300 		bltu t2, t0, .L4
-  38 0064 63EA7200 		bltu t0, t2, .L5
-  39 0068 67800000 		jr ra
-  40              	
-  41              	.L4:
-  42 006c 1304F4FF 		addi s0, s0, -1
-  43 0070 63E47200 		bltu t0, t2, .L5
-  44 0074 67800000 		jr ra
-  45              	
-  46              	.L5:
-  47 0078 13041400 		addi s0, s0, 1
-  48 007c 67800000 		jr ra
+  28              	.L1:
+  29 0040 13041400 	        addi s0, s0, 1
+  30 0044 636A5300 	        bltu t1, t0, .L2
+  31 0048 63E2D203 	        bltu t0, t4, .L3
+  32 004c 63E85302 	        bltu t2, t0, .L4
+  33 0050 63EC7202 	        bltu t0, t2, .L5
+  34 0054 6FF09FFC 	        j .misalign
+  35              	
+  36              	.L2:
+  37 0058 1304F4FF 	        addi s0, s0, -1
+  38 005c 63E8D201 	        bltu t0, t4, .L3
+  39 0060 63EE5300 	        bltu t2, t0, .L4
+  40 0064 63E27202 	        bltu t0, t2, .L5
+  41 0068 6FF05FFB 	        j .misalign
+  42              	
+  43              	.L3:
+  44 006c 1304F4FF 	        addi s0, s0, -1
+  45 0070 63E65300 	        bltu t2, t0, .L4
+  46 0074 63EA7200 	        bltu t0, t2, .L5
+  47 0078 6FF05FFA 	        j .misalign
+  48              	
+  49              	.L4:
+  50 007c 1304F4FF 	        addi s0, s0, -1
+  51 0080 63E47200 	        bltu t0, t2, .L5
+  52 0084 6FF09FF9 	        j .misalign
+  53              	
+  54              	.L5:
+  55 0088 13041400 	        addi s0, s0, 1
+  56 008c 6FF01FF9 	        j .misalign
+  57              	
+GAS LISTING test.s 			page 2
+
+
