@@ -13,6 +13,7 @@ void debugMode(void) {
 	bool run = true;
 	const char step = 's';
 	const char next = 'n';
+	const char pc = 'p';
 	const char printRegs = 'r';
 	const char printMem = 'm';
 	const char printInst = 'i';
@@ -30,7 +31,10 @@ void debugMode(void) {
                 run = false;
                 breakpoints = true;
                 break;
-            case printRegs:
+			case pc:
+				std::cout << "PC is " << std::hex << regs->readPC() << std::endl;
+				break;
+			case printRegs:
 			    regs->print();
 			    break;
 		    case printMem:
@@ -42,6 +46,7 @@ void debugMode(void) {
 		    case help:
 			    std::cout << "s -- step to next instruction" << std::endl;
                 std::cout << "n -- skip to the next breakpoint" << std::endl;
+				std::cout << "p -- print PC reg contents" << std::endl;
                 std::cout << "r -- print register contents" << std::endl;
 			    std::cout << "m -- print memory contents" << std::endl;
 			    std::cout << "i -- print current instruction" << std::endl;
