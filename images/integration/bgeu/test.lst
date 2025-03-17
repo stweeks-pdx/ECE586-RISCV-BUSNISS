@@ -12,40 +12,48 @@ GAS LISTING test.s 			page 1
    9 000c 130EC0FF 		li t3, -4
   10 0010 930E3000 		li t4, 3
   11 0014 13040000 		li s0, 0
-  12              	
-  13 0018 63FC6200 		bgeu t0, t1, .L1
-  14 001c 63765302 		bgeu t1, t0, .L2
-  15 0020 63FED203 		bgeu t0, t4, .L3
-  16 0024 63F45304 		bgeu t2, t0, .L4
-  17 0028 63F87204 		bgeu t0, t2, .L5
-  18 002c 67800000 		jr ra
+  12 0018 6F000001 		j .begin
+  13              	
+  14              	.misalign:
+  15 001c 63735300 		bgeu t1, t0, mem_loc_2
+  16 0020 0000     		mem_loc_1: .half 0x0
+  17 0022 0000     		mem_loc_2: .half 0x0
+  18 0024 67800000 		jr ra
   19              	
-  20              	.L1:
-  21 0030 1304F4FF 		addi s0, s0, -1
-  22 0034 637A5300 		bgeu t1, t0, .L2
-  23 0038 63F2D203 		bgeu t0, t4, .L3
-  24 003c 63F85302 		bgeu t2, t0, .L4
-  25 0040 63FC7202 		bgeu t0, t2, .L5
-  26 0044 67800000 		jr ra
+  20              	.begin:
+  21 0028 63FC6200 		bgeu t0, t1, .L1
+  22 002c 63765302 		bgeu t1, t0, .L2
+  23 0030 63FED203 		bgeu t0, t4, .L3
+  24 0034 63F45304 		bgeu t2, t0, .L4
+  25 0038 63F87204 		bgeu t0, t2, .L5
+  26 003c 6FF01FFE 		j .misalign
   27              	
-  28              	.L2:
-  29 0048 13041400 		addi s0, s0, 1
-  30 004c 63F8D201 		bgeu t0, t4, .L3
-  31 0050 63FE5300 		bgeu t2, t0, .L4
-  32 0054 63F27202 		bgeu t0, t2, .L5
-  33 0058 67800000 		jr ra
-  34              	
-  35              	.L3:
-  36 005c 13041400 		addi s0, s0, 1
-  37 0060 63F65300 		bgeu t2, t0, .L4
-  38 0064 63FA7200 		bgeu t0, t2, .L5
-  39 0068 67800000 		jr ra
-  40              	
-  41              	.L4:
-  42 006c 13041400 		addi s0, s0, 1
-  43 0070 63F47200 		bgeu t0, t2, .L5
-  44 0074 67800000 		jr ra
-  45              	
-  46              	.L5:
-  47 0078 1304F4FF 		addi s0, s0, -1
-  48 007c 67800000 		jr ra
+  28              	.L1:
+  29 0040 1304F4FF 		addi s0, s0, -1
+  30 0044 637A5300 		bgeu t1, t0, .L2
+  31 0048 63F2D203 		bgeu t0, t4, .L3
+  32 004c 63F85302 		bgeu t2, t0, .L4
+  33 0050 63FC7202 		bgeu t0, t2, .L5
+  34 0054 6FF09FFC 		j .misalign
+  35              	
+  36              	.L2:
+  37 0058 13041400 		addi s0, s0, 1
+  38 005c 63F8D201 		bgeu t0, t4, .L3
+  39 0060 63FE5300 		bgeu t2, t0, .L4
+  40 0064 63F27202 		bgeu t0, t2, .L5
+  41 0068 6FF05FFB 		j .misalign
+  42              	
+  43              	.L3:
+  44 006c 13041400 		addi s0, s0, 1
+  45 0070 63F65300 		bgeu t2, t0, .L4
+  46 0074 63FA7200 		bgeu t0, t2, .L5
+  47 0078 6FF05FFA 		j .misalign
+  48              	
+  49              	.L4:
+  50 007c 13041400 		addi s0, s0, 1
+  51 0080 63F47200 		bgeu t0, t2, .L5
+  52 0084 6FF09FF9 		j .misalign
+  53              	
+  54              	.L5:
+  55 0088 1304F4FF 		addi s0, s0, -1
+  56 008c 6FF01FF9 		j .misalign

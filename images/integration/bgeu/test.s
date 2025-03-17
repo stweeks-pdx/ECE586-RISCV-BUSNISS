@@ -9,13 +9,21 @@ _start:
 	li t3, -4
 	li t4, 3
 	li s0, 0
+	j .begin
 
+.misalign:
+	bgeu t1, t0, mem_loc_2
+	mem_loc_1: .half 0x0
+	mem_loc_2: .half 0x0
+	jr ra
+
+.begin:
 	bgeu t0, t1, .L1
 	bgeu t1, t0, .L2
 	bgeu t0, t4, .L3
 	bgeu t2, t0, .L4
 	bgeu t0, t2, .L5
-	jr ra
+	j .misalign
 
 .L1:
 	addi s0, s0, -1
@@ -23,26 +31,26 @@ _start:
 	bgeu t0, t4, .L3
 	bgeu t2, t0, .L4
 	bgeu t0, t2, .L5
-	jr ra
+	j .misalign
 
 .L2:
 	addi s0, s0, 1
 	bgeu t0, t4, .L3
 	bgeu t2, t0, .L4
 	bgeu t0, t2, .L5
-	jr ra
+	j .misalign
 
 .L3:
 	addi s0, s0, 1
 	bgeu t2, t0, .L4
 	bgeu t0, t2, .L5
-	jr ra
+	j .misalign
 
 .L4:
 	addi s0, s0, 1
 	bgeu t0, t2, .L5
-	jr ra
+	j .misalign
 
 .L5:
 	addi s0, s0, -1
-	jr ra
+	j .misalign
