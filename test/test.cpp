@@ -18,6 +18,7 @@ uint32_t PROGRAMSTART = 0x00;
 std::unique_ptr<RegFile> regs;
 std::unique_ptr<Memory> mem;
 bool continueSim = true;
+bool breakpoints = false;
 
 int main() {
 	int test_passed = 0;
