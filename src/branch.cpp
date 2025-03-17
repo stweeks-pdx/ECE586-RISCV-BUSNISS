@@ -80,13 +80,8 @@ void BRANCH::check(bool taken, uint32_t target) {
 }
 
 void BRANCH::throwException(void) {
-#ifdef DEBUG	
-	std::cout << "ERROR: Misaligned target" << std::endl;
-#endif
 
-#ifdef ISR
-	// TODO: Connect to ISR
-#else  
-	abort();
-#endif	
+	std::cout << "You've activated my trap card! Misaligned memory reference in branch" << std::endl;
+
+	exit(1);
 }
