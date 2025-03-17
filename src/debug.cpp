@@ -20,21 +20,21 @@ void debugMode(void) {
 	const char help = 'h';
 
 	while (run) {
-        std::cout << "rdb> ";
+            std::cout << "rdb> ";
 	    std::cin >> input;
 	    switch (input) {
 		    case step:
 			    run = false;
-                breakpoints = false;
+            		    breakpoints = false;
 			    break;
-            case next:
-                run = false;
-                breakpoints = true;
-                break;
-			case pc:
-				std::cout << "PC is " << std::hex << regs->readPC() << std::endl;
-				break;
-			case printRegs:
+            	    case next:
+                    	    run = false;
+           		    breakpoints = true;
+	                    break;
+	    	    case pc:
+		  	    std::cout << "PC is " << std::hex << regs->readPC() << std::endl;
+			    break;
+		    case printRegs:
 			    regs->print();
 			    break;
 		    case printMem:
@@ -45,9 +45,9 @@ void debugMode(void) {
 			    break;
 		    case help:
 			    std::cout << "s -- step to next instruction" << std::endl;
-                std::cout << "n -- skip to the next breakpoint" << std::endl;
-				std::cout << "p -- print PC reg contents" << std::endl;
-                std::cout << "r -- print register contents" << std::endl;
+                	    std::cout << "n -- skip to the next breakpoint" << std::endl;
+		  	    std::cout << "p -- print PC reg contents" << std::endl;
+                	    std::cout << "r -- print register contents" << std::endl;
 			    std::cout << "m -- print memory contents" << std::endl;
 			    std::cout << "i -- print current instruction" << std::endl;
 			    std::cout << "h -- help" << std::endl;
