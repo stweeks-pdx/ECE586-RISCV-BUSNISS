@@ -136,7 +136,7 @@ so the .mem could be easily interpreted from the results. Below are the .mem tes
 
 The following tables represent the unit test plan for a few of our instructions.
 #### LOAD unit test
-![Load Test](load.pg)
+![Load Test](load.png)
 
 #### STORE unit test
 ![Store Test](store.png)
