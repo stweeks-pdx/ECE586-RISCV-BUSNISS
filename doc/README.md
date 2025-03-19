@@ -41,6 +41,8 @@ file including the PC are printed out before exiting the program.
 
 `-d` = run RISC-V debugger
 
+`-b` = run RISC-V debugger with breakpoints
+
 ## Processor
 The processor is the main fetch/decode/execute entry point and the workhorse of the simulator. It uses the singelton register and memory
 object pointers to get the PC, update the PC, and to read the instruction from memory. One of the major components of the processor is
@@ -132,9 +134,27 @@ time, or designer choice. We did not want to prescribe such hard rules to the de
 allowed us to catch some small integration bugs early. Users who created .mem tests were required to come up with an explanation framework
 so the .mem could be easily interpreted from the results. Below are the .mem test excells that can be found under the `images/` root folder.
 
+The following tables represent the unit test plan for a few of our instructions.
+#### LOAD unit test
+![Load Test](load.png)
+
+#### STORE unit test
+![Store Test](store.png)
+
+#### LUI unit test
+![LUI Test](lui.png)
+
+#### AUIPC unit test
+![AUPIC Test](auipc.png)
+
 # Extra Credit
 EC was attempted in this project by the team. Currently here is the list of EC that was completed:
 
 1) Debugger with single step, print register, memory, and display current instruction (for separate commands)
-    RISC-V debugger is set using the `-d` flag on the command line. When on the debugger use: `rdb> h` to get
+    RISC-V debugger is set using the `-d` flag (and/or `-b` flag) on the command line. When on the debugger use: `rdb> h` to get
     a list of possible run commands.
+
+2) Breakpoints added to the mem file, by inserting an 'x' or 'X' after the instruction word, will allow the program to run until the instruction
+   on that line is reached. Once at the line, the debugger prompt will show and allow the user to continue to step through with 's' or move to
+   the next breakpoint with 'n'. Breakpoints are enabled through the command line with the `-b` flag, but can also be enabled by the 'n' character
+   while the debugger is enabled.
