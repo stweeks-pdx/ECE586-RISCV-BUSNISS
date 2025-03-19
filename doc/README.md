@@ -136,16 +136,16 @@ so the .mem could be easily interpreted from the results. Below are the .mem tes
 
 The following tables represent the unit test plan for a few of our instructions.
 #### LOAD unit test
-<<TODO: screenshots when on a working OS>>
+![Load Test](load.pg)
 
 #### STORE unit test
-<<TODO: screenshots when on a working OS>>
+![Store Test](store.png)
 
 #### LUI unit test
-<<TODO: screenshots when on a working OS>>
+![LUI Test](lui.png)
 
 #### AUIPC unit test
-<<TODO: screenshots when on a working OS>>
+![AUPIC Test](auipc.png)
 
 # Extra Credit
 EC was attempted in this project by the team. Currently here is the list of EC that was completed:
